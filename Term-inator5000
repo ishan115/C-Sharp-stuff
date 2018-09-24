@@ -39,7 +39,11 @@ namespace SecondAssignment
         {
             Console.WriteLine("Please type your name: ");
             PlayerName = Console.ReadLine();
-            Console.WriteLine("Your selected name is " + PlayerName + " .Are you satisfied with that name?\nPlease say yes or no.");
+            Console.Write("Your selected name is ");
+            Console.ForegroundColor = ConsoleColor.DarkMagenta;
+            Console.Write(PlayerName);
+            Console.ResetColor();
+            Console.Write(" .Are you satisfied with that name?\nPlease say yes or no.\n");
 
             PlayerNameCheck = Console.ReadLine();
 
@@ -58,7 +62,10 @@ namespace SecondAssignment
 
             }
 
-            Console.WriteLine("Your name is: " + PlayerName);
+            Console.WriteLine("Your name is: ");
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.Write(PlayerName + "\n");
+            Console.ResetColor();
         }
 
         //player age object
@@ -72,7 +79,10 @@ namespace SecondAssignment
              * by Prasanth Jaya, September 1st, 2015
              */
 
-            Console.WriteLine("Your age is: " + AgeName);
+            Console.WriteLine("Your age is: ");
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.Write(AgeName + "\n");
+            Console.ResetColor();
         }
 
         //player student bool object 
@@ -95,7 +105,19 @@ namespace SecondAssignment
 
         public void displayPlayerInfo()
         {
-            Console.WriteLine("Your name is: " + PlayerName + "\nYour age is: " + AgeName + "\nYou are a " + StudentSee + ".\n");
+            Console.Write("Your name is: ");
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.Write(PlayerName);
+            Console.ResetColor();
+            Console.Write("\nYour age is: ");
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.Write(AgeName);
+            Console.ResetColor();
+            Console.Write("\nYou are a ");
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.Write(StudentSee);
+            Console.ResetColor();
+            Console.Write( ".\n");
         }
     }
 
@@ -148,6 +170,7 @@ namespace SecondAssignment
 
         public void askCourse()
         {
+            Console.ForegroundColor = ConsoleColor.DarkCyan;
             Console.WriteLine("Please select a course from the following: ");
             Console.WriteLine(String.Join("\n", CourseName));
 
@@ -157,42 +180,66 @@ namespace SecondAssignment
              */
 
             StoreCourseName = Console.ReadLine();
+            Console.ResetColor();
 
             if (StoreCourseName == "Biology")
             {
+                Console.BackgroundColor = ConsoleColor.White; 
                 Console.WriteLine("\nYou have selected Biology");
+                Console.ResetColor();
             } else 
             {
+                Console.BackgroundColor = ConsoleColor.White;
                 Console.WriteLine("\nInvalid Response");
+                Console.ResetColor();
             }
         }
 
         public void askOption()
         {
+            Console.ForegroundColor = ConsoleColor.DarkGreen;
             Console.WriteLine("\nPlease select the option number you want to select? \n");
             Console.WriteLine(String.Join("\n", OptionBiology));
+            Console.ResetColor();
 
             OptionNumber = Convert.ToInt32(Console.ReadLine());
 
             switch (OptionNumber)
             {
                 case 1:
+                    Console.ForegroundColor = ConsoleColor.DarkRed;
                     Console.WriteLine("Ethology is the study of animal behaviour.");
+                    Console.ResetColor();
                     break;
+
                 case 2:
+                    Console.ForegroundColor = ConsoleColor.DarkRed;
                     Console.WriteLine("Entomology is the study of insects.");
+                    Console.ResetColor();
                     break;
+
                 case 3:
+                    Console.ForegroundColor = ConsoleColor.DarkRed;
                     Console.WriteLine("Herpetology is the study of reptiles and amphibians.");
+                    Console.ResetColor();
                     break;
+
                 case 4:
+                    Console.ForegroundColor = ConsoleColor.DarkRed;
                     Console.WriteLine("Ichthyology is the study of fish");
+                    Console.ResetColor();
                     break;
+
                 case 5:
+                    Console.ForegroundColor = ConsoleColor.DarkRed;
                     Console.WriteLine("Mammalogy is the study of mammals");
+                    Console.ResetColor();
                     break;
                 default:
+
+                    Console.ForegroundColor = ConsoleColor.DarkRed;
                     Console.WriteLine("Invalid Option");
+                    Console.ResetColor();
                     break;
             }
         }
@@ -211,3 +258,7 @@ namespace SecondAssignment
     }
     */
 }
+
+
+//Edit log #1:
+//Added Color to the code
