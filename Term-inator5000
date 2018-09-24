@@ -1,0 +1,213 @@
+using System;
+
+namespace SecondAssignment
+{
+    class Program
+    {
+        //main 
+        static void Main()
+        {
+            Console.Title = "Term-inator5000 by Ishan Dutta";
+            PlayerInfo NewPlayerInfo = new PlayerInfo();
+            NewPlayerInfo.askName();
+            NewPlayerInfo.askAge();
+            NewPlayerInfo.studentChecking();
+            NewPlayerInfo.displayPlayerInfo();
+
+            CourseInfo NewCourseInfo = new CourseInfo();
+            NewCourseInfo.askCourse();
+            NewCourseInfo.askOption();
+
+            Console.ReadKey();
+
+        }
+    }
+
+    //1st class that stores player information
+    public class PlayerInfo
+    {
+        //declaring variables
+        public string PlayerName = "";
+        public string PlayerNameCheck = "";
+        public double AgeName = 0;
+        public bool StudentCheck = true;
+        public string StudentAnswer = "";
+        public string StudentSee = "";
+
+        //player name object
+        public void askName()
+        {
+            Console.WriteLine("Please type your name: ");
+            PlayerName = Console.ReadLine();
+            Console.WriteLine("Your selected name is " + PlayerName + " .Are you satisfied with that name?\nPlease say yes or no.");
+
+            PlayerNameCheck = Console.ReadLine();
+
+            if (PlayerNameCheck == "yes")
+            {
+                Console.WriteLine("Thank you!");
+            }
+            else if (PlayerNameCheck == "no")
+            {
+                Console.WriteLine("Please select your preferred name: ");
+                PlayerName = Console.ReadLine();
+            }
+            else
+            {
+                Console.WriteLine("You don't have any name selected. Please restart");
+
+            }
+
+            Console.WriteLine("Your name is: " + PlayerName);
+        }
+
+        //player age object
+        public void askAge()
+        {
+            Console.WriteLine("Please select your age: ");
+            AgeName = Convert.ToInt32(Console.ReadLine());
+
+            /* Credits:
+             * https://stackoverflow.com/questions/24443827/reading-an-integer-from-user-input
+             * by Prasanth Jaya, September 1st, 2015
+             */
+
+            Console.WriteLine("Your age is: " + AgeName);
+        }
+
+        //player student bool object 
+        public void studentChecking()
+        {
+            Console.WriteLine("Are you a student?");
+            StudentAnswer = Console.ReadLine();
+
+            if (StudentAnswer == "yes")
+            {
+                StudentCheck = true;
+                StudentSee = "student";
+            }
+            else
+            {
+                StudentCheck = false;
+                StudentSee = "not a student";
+            }
+        }
+
+        public void displayPlayerInfo()
+        {
+            Console.WriteLine("Your name is: " + PlayerName + "\nYour age is: " + AgeName + "\nYou are a " + StudentSee + ".\n");
+        }
+    }
+
+    public class CourseInfo
+    {
+        public string[] CourseName = { "Biology" };
+
+            //For next time when we learn loops
+           /* 
+
+            "Chemsitry", "Maths", "Physics",};
+        public string[] OptionPhysics = {"Classical mechanics",
+            "Thermodynamics and statistical mechanics",
+            "Electromagnetism and electronics",
+            "Relativity",
+            "Quantum mechanics",
+            "Optics",
+            "Atomic, molecular, and optical physics",
+            "Condensed matter physics",
+            "High energy/particle physics",
+            "Nuclear physics"};
+            
+        public string[] OptionChemistry = { "Organic chemistry",
+            "Inorganic Chemistry",
+            "Analytical Chemistry",
+            "Physical Chemistry",
+            "Biochemistry" };
+            
+
+
+        public string[] OptionMaths = { "Algebra",
+            "Calculus and analysis",
+            "Geometry and topology",
+            "Combinatorics",
+            "Logic",
+            "Number theory",
+            "Dynamical systems and differential equations",
+            "Mathematical physics" };
+
+            */
+
+        public string[] OptionBiology = { "1) Ethology",
+            "2) Entomology",
+            "3) Herpetology",
+            "4) Ichthyology",
+            "5) Mammalogy" };
+       
+        public int OptionNumber = 0;
+        public string StoreCourseName = "";
+
+        public void askCourse()
+        {
+            Console.WriteLine("Please select a course from the following: ");
+            Console.WriteLine(String.Join("\n", CourseName));
+
+            /* Credits:
+             * https://stackoverflow.com/questions/42112051/c-sharp-print-list-of-string-array
+             * by PulkitG, Feburary 8th, 2017
+             */
+
+            StoreCourseName = Console.ReadLine();
+
+            if (StoreCourseName == "Biology")
+            {
+                Console.WriteLine("\nYou have selected Biology");
+            } else 
+            {
+                Console.WriteLine("\nInvalid Response");
+            }
+        }
+
+        public void askOption()
+        {
+            Console.WriteLine("\nPlease select the option number you want to select? \n");
+            Console.WriteLine(String.Join("\n", OptionBiology));
+
+            OptionNumber = Convert.ToInt32(Console.ReadLine());
+
+            switch (OptionNumber)
+            {
+                case 1:
+                    Console.WriteLine("Ethology is the study of animal behaviour.");
+                    break;
+                case 2:
+                    Console.WriteLine("Entomology is the study of insects.");
+                    break;
+                case 3:
+                    Console.WriteLine("Herpetology is the study of reptiles and amphibians.");
+                    break;
+                case 4:
+                    Console.WriteLine("Ichthyology is the study of fish");
+                    break;
+                case 5:
+                    Console.WriteLine("Mammalogy is the study of mammals");
+                    break;
+                default:
+                    Console.WriteLine("Invalid Option");
+                    break;
+            }
+        }
+
+
+
+    }
+
+    /*
+    public class GameInfo
+    {
+        public bool StartGame;
+        public string ResponseofPlayer;
+        public int CourseDone;
+        public bool ExitGame;
+    }
+    */
+}
