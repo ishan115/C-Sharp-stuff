@@ -1,3 +1,43 @@
+                                                                UML Diagram
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+
+Class =         PlayerInfo 
+
+Variables =     PlayerName = string
+                PlayerNameCheck = string 
+                AgeName = double 
+                StudentCheck = bool
+                StudentAnswer = string
+                StudentSee = string
+
+Objects =       askName()
+                askAge()
+                studentChecking()
+                displayPlayerInfo()
+
+Class =         CourseInfo
+
+Variables =     CourseName = string[]
+                OptionNumber = int
+                OptionBiology = string[]
+                StoreCourseName = string
+ 
+Objects =       askCourse()
+                askOption()
+ 
+
+Class =         GameInfo
+
+Variables =     StartGame
+                ResponseOfPlayer
+                CourseDone
+                ExitGame
+ 
+ Objects =      None yet
+ 
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+                                                            Program
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 using System;
 
 namespace SecondAssignment
@@ -259,6 +299,13 @@ namespace SecondAssignment
     */
 }
 
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+                                                                Edit Log
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 
 //Edit log #1:
 //Added Color to the code
+
+//Edit log #2:
+//Added UML Diagram for brief understanding
+//Made the code a little bit more pretty
