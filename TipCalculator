@@ -1,0 +1,59 @@
+using System;
+
+// By Sam and Ishan
+// 9/25/18
+
+namespace TipCalculator
+{
+    class Program
+    {
+        static void Main()
+        {
+            // Display Title
+            Console.Title = "Tip Calculator";
+            //Ask player how good service is
+            string ServiceDisplayed;
+            double ServiceNumber;
+            double CostOfOrder;
+            double Tip;
+            double Total;
+            Console.WriteLine("How was your service. (Great, Good, or Poor)");
+            ServiceDisplayed = Console.ReadLine();
+            
+            switch (ServiceDisplayed.ToLower())
+            {
+                case "great":
+                    ServiceNumber = 0.20;
+                    break;
+                case "good":
+                    ServiceNumber = 0.15;
+                    break;
+                default:
+                    ServiceNumber = 0.10;
+                    break;
+            }
+            
+            //ask player how much order was
+            Console.Write("Please enter the cost of your bill: $");
+            Console.ForegroundColor = ConsoleColor.DarkGreen;
+            CostOfOrder = Convert.ToDouble(Console.ReadLine());
+            Console.ResetColor();
+            Console.WriteLine();
+
+            //maths for the calculation
+            Tip = CostOfOrder * ServiceNumber;
+            Console.WriteLine("The tip amount is: ");
+            Console.ForegroundColor = ConsoleColor.DarkGreen;
+            Console.Write("$" + Tip + "\n");
+            Console.ResetColor();
+
+            Total = CostOfOrder + Tip;
+            Console.WriteLine("The total amount is: ");
+            Console.ForegroundColor = ConsoleColor.DarkRed;
+            Console.Write("$" + Total + "\n");
+            Console.ResetColor();
+            
+            Console.ReadKey();
+        }
+    }
+}
