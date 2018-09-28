@@ -57,3 +57,6 @@ namespace TipCalculator
         }
     }
 }
+
+//Edit Log #1
+//Need to add console exception try methods
