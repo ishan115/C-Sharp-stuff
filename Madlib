@@ -1,0 +1,85 @@
+/* Basic code for a madlib
+Need to incorporate loops as a future goal
+*/
+
+using System;
+
+namespace Madlibs
+    {
+        class Program
+        {
+            static void Main()
+            {
+                //declaring variables
+                string Creature;
+                string Luminous;
+                string Ghastly;
+                string Spectral;
+                string Countryman;
+                string Farrier;
+                string Farmer;
+                string Dreadful;
+                string Apparition;
+                string Hound;
+
+                //header
+                Console.WriteLine("--------------");
+                Console.WriteLine("Welcome to the Rodeo Cannibal Madlib!");
+                Console.WriteLine("--------------");
+
+                //user-input
+                Console.Write("Please enter a noun: ");
+                Creature = Console.ReadLine();
+
+                Console.Write("Please enter a place: ");
+                Luminous = Console.ReadLine();
+
+                Console.Write("Please enter a place: ");
+                Ghastly = Console.ReadLine();
+
+                Console.Write("Please enter an noun: ");
+                Spectral = Console.ReadLine();
+
+                Console.Write("Please enter an occupation: ");
+                Countryman = Console.ReadLine();
+
+                Console.Write("Please enter a noun: ");
+                Farrier = Console.ReadLine();
+
+                Console.Write("Please enter a plural noun: ");
+                Farmer = Console.ReadLine();
+
+                Console.Write("Please enter a name: ");
+                Dreadful = Console.ReadLine();
+
+                Console.Write("Please enter a plural noun: ");
+                Apparition = Console.ReadLine();
+
+                Console.Write("Please enter a plural noun: ");
+                Hound = Console.ReadLine();
+
+                //empty line
+                Console.WriteLine();
+
+                //story
+                String Story = "There was a very big "
+                    + Creature + " whose tail was very famous in "
+                    + Luminous + ". "
+                    + Ghastly + " contained a very special "
+                    + Spectral + ". I ate a very delicious "
+                    + Countryman + ", one which had a big "
+                    + Farrier + ", and there was some "
+                    + Farmer + " laying nearby. "
+                    + Dreadful + " started eating huge chunks of "
+                    + Apparition + " since there weren't many "
+                    + Hound + " left.";
+
+                //display story
+                Console.WriteLine(Story);
+
+                //exit command
+                Console.WriteLine("Press any key to exit");
+                Console.ReadKey();
+            }
+        }
+    }
