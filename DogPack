@@ -1,0 +1,57 @@
+using System;
+
+namespace Doggo
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Demo dc = new Demo();
+        }
+    }
+
+
+    class Demo
+    {
+        public Demo()
+        {
+            string[] DogPack = new string[]
+            {
+                "Ptbull, Mr. World Wide", //0
+                "Husky, Snowflake", //1
+                "Corgi, Pumpkin", //2
+                "Golden Retriever, Mashed Potato", //3
+                "Beagle, Meatballz", //4
+                "Poodle, Noooudle", //5
+                "German Shepard, Chapo", //6
+                "Shiba, Mrs. World Wide", //7
+                "American Bully XL, Pipsqueak", //8
+                "Dog, DGOG", //9
+                "Mutt, Jeff" //10
+            };
+
+            for (int i = 0; i < DogPack.Length; i++)
+            {
+                Console.WriteLine(DogPack[i]);
+            }
+
+            Console.WriteLine();
+
+            foreach (string dog in DogPack)
+            {
+                Console.WriteLine(dog);
+            }
+
+            Console.WriteLine();
+
+            int x = 0;
+            while (x < DogPack.Length)
+            {
+                Console.WriteLine(DogPack[x]);
+                x++;
+            }
+            Console.ReadLine();
+        }
+
+    }
+}
