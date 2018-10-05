@@ -45,6 +45,7 @@ namespace Doggo
             Console.WriteLine();
 
             int x = 0;
+            
             while (x < DogPack.Length)
             {
                 Console.WriteLine(DogPack[x]);
