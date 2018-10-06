@@ -10,7 +10,6 @@ namespace Doggo
         }
     }
 
-
     class Demo
     {
         public Demo()
@@ -29,7 +28,8 @@ namespace Doggo
                 "Dog, DGOG", //9
                 "Mutt, Jeff" //10
             };
-
+             
+            //1st loop print
             for (int i = 0; i < DogPack.Length; i++)
             {
                 Console.WriteLine(DogPack[i]);
@@ -37,6 +37,7 @@ namespace Doggo
 
             Console.WriteLine();
 
+            //2nd loop print
             foreach (string dog in DogPack)
             {
                 Console.WriteLine(dog);
@@ -44,6 +45,7 @@ namespace Doggo
 
             Console.WriteLine();
 
+            //3rd print
             int x = 0;
             
             while (x < DogPack.Length)
