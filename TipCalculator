@@ -47,7 +47,8 @@ namespace TipCalculator
             Console.ForegroundColor = ConsoleColor.DarkGreen;
             Console.Write("$" + Tip + "\n");
             Console.ResetColor();
-
+            
+            //maths for total calculation
             Total = CostOfOrder + Tip;
             Console.WriteLine("The total amount is: ");
             Console.ForegroundColor = ConsoleColor.DarkRed;
