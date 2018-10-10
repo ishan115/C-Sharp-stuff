@@ -62,3 +62,4 @@ namespace TipCalculator
 
 //Edit Log #1
 //Need to add console exception try and catch methods
+//Need to add more conditions
