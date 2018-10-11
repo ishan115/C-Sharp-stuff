@@ -1,0 +1,49 @@
+//Simple string manipulation code for phrase manipulation
+
+using System;
+
+namespace StringManipulation
+{
+    class Program
+    {
+        public static void Main()
+        { 
+            Example example = new Example();
+            example.display();
+            example.display2();
+            example.display3();
+
+            Console.ReadKey();
+        }
+
+        public class Example
+        {
+            public void display()
+            {
+                String phrase = "colour";
+                Console.WriteLine("Before: {0}", phrase);
+                phrase = phrase.Replace("u", "");
+                Console.WriteLine("After: {0}", phrase);
+                Console.WriteLine();
+
+            }
+
+            public void display2()
+            {
+                String phrase = "Grey";
+                Console.WriteLine("Before: {0}", phrase);
+                phrase = phrase.Replace("e", "a");
+                Console.WriteLine("After: {0}", phrase);
+                Console.WriteLine();
+            }
+            public void display3()
+            {
+                String phrase = "Mom";
+                Console.WriteLine("Before: {0}", phrase);
+                phrase = phrase.Replace("o", "u");
+                Console.WriteLine("After: {0}", phrase);
+                Console.WriteLine();
+            }
+        }
+}
+}
