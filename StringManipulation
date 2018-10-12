@@ -20,6 +20,7 @@ namespace StringManipulation
         {
             public void display()
             {
+                //british vs american spelling
                 String phrase = "colour";
                 Console.WriteLine("Before: {0}", phrase);
                 phrase = phrase.Replace("u", "");
