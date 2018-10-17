@@ -1,10 +1,33 @@
 using System;
 
-namespace Iterationhomework
+namespace IterationPractice
 {
-    class GameInfo
+    class Program
     {
+        static void Main()
+        {
+            Console.Title = "Welcome to Term-inator5000 2.0";
 
+            PlayerInfo player = new PlayerInfo();
+            player.displayName();
+            player.displayAge();
+
+            Console.WriteLine("\nYou will be tested on Physics, Chemistry & Maths\n");
+
+            GameInfo game = new GameInfo();
+
+            game.checkPhysics();
+            game.checkChemistry();
+            game.checkMaths();
+
+            Console.ReadKey();
+
+        }
+    }
+}
+
+    public class GameInfo
+    {
         PlayerInfo player = new PlayerInfo();
 
         public string[] CourseName = { "Chemsitry", "Maths", "Physics" };
@@ -323,5 +346,29 @@ namespace Iterationhomework
             Console.ResetColor();
 
         }
+       
+    public class PlayerInfo
+    {
+        string playername = "";
+        string playerage = "";
+
+        public void displayName()
+        {
+            Console.WriteLine("Please type your name: ");
+            playername = Console.ReadLine();
+            Console.Write("The name you have chosen is ");
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.Write(playername + "\n");
+            Console.ResetColor();
+        }
+
+        public void displayAge()
+        {
+            Console.WriteLine("Please type your age: ");
+            playerage = Console.ReadLine();
+            Console.Write("The age you have chosen is ");
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.Write(playerage + "\n");
+            Console.ResetColor();
+        }
     }
-}
