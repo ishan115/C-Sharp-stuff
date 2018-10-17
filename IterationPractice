@@ -1,0 +1,327 @@
+using System;
+
+namespace Iterationhomework
+{
+    class GameInfo
+    {
+
+        PlayerInfo player = new PlayerInfo();
+
+        public string[] CourseName = { "Chemsitry", "Maths", "Physics" };
+
+        public int checker = 0;
+
+        public string[] OptionChemistry = {
+                            "0. Organic chemistry",
+                            "1. Inorganic Chemistry",
+                            "2. Analytical Chemistry",
+                            "3. Physical Chemistry",
+                            "4. Biochemistry" };
+
+        public string[] ChemistryDefintions = {
+                            "0. The chemistry of carbon compounds",
+                            "1. The branch of chemistry that deals with inorganic compounds",
+                            "2. The branch of chemistry that studies and uses instruments and methods used to separate, identify, and quantify matter",
+                            "3. The branch of chemistry concerned with the application of the techniques and theories of physics to the study of chemical systems",
+                            "4. The branch of science concerned with the chemical and physicochemical processes that occur within living organisms"};
+
+        public string[] OptionMaths = {
+                             "0. Algebra",
+                             "1. Calculus and analysis",
+                             "2. Geometry and topology",
+                             "3. Combinatorics",
+                             "4. Logic",
+                             "5. Number theory",
+                             "6. Dynamical systems and differential equations",
+                             "7. Mathematical physics" };
+
+        public string[] MathsDefinitions = {
+                            "0. The study of mathematical symbols and the rules for manipulating these symbols",
+                            "1. The branch of pure mathematics that encompasses differential and integral calculus, but also extends to cover measure, limits, infinite series, and analytic functions",
+                            "2. The study of geometric properties and spatial relations unaffected by the continuous change of shape or size of figures",
+                            "3. The branch of mathematics dealing with combinations of objects belonging to a finite set in accordance with certain constraints, such as those of graph theory",
+                            "4. The study of formal reasoning based upon statements or propositions",
+                            "5. The branch of mathematics that deals with the properties and relationships of numbers, especially the positive integers",
+                            "6. A system in which a function describes the time dependence of a point in a geometrical space",
+                            "7. The development of mathematical methods for application to problems in physics"};
+
+        public string[] OptionPhysics = {
+                             "0. Classical mechanics",
+                             "1. Thermodynamics and statistical mechanics",
+                             "2. Electromagnetism and electronics",
+                             "3. Relativity",
+                             "4. Quantum mechanics",
+                             "5. Optics",
+                             "6. Atomic, molecular, and optical physics",
+                             "7. Condensed matter physics",
+                             "8. High energy/particle physics",
+                             "9. Nuclear physics"};
+
+        public string[] PhysicsDefintions = {
+                            "0. The study of the motion of bodies (including the special case in which bodies remain at rest)",
+                            "1. The branch of physical science that deals with the relations between heat and other forms of energy",
+                            "2. The interaction of electric currents or fields and magnetic fields",
+                            "3. The dependence of various physical phenomena on relative motion of the observer and the observed objects",
+                            "4. The branch of mechanics that deals with the mathematical description of the motion and interaction of subatomic particles",
+                            "5. The scientific study of sight and the behavior of light",
+                            "6. The study of matter-matter and light-matter interactions",
+                            "7. The field of physics that deals with the macroscopic and microscopic physical properties of matter",
+                            "8. Is a branch of physics that studies the nature of the particles that constitute matter and radiation",
+                            "9. The physics of atomic nuclei and their interactions, especially in the generation of nuclear energy"};
+
+        public void checkPhysics()
+        {
+            Console.ForegroundColor = ConsoleColor.DarkCyan;
+            Console.WriteLine("\nYou will be tested on Physics first\n");
+            Console.ResetColor();
+
+            Console.WriteLine("Here are the options\n");
+            for (int i = 0; i < OptionPhysics.Length; i++)
+            {
+
+                Console.WriteLine(OptionPhysics[i]);
+
+            }
+
+            bool[] Output = new bool[PhysicsDefintions.Length];
+
+            for (int i = 0; i < Output.Length; i++)
+            {
+
+                Output[i] = false;
+
+            }
+
+            Random Randomizer = new Random();
+
+            Console.WriteLine();
+
+            int Correct = 0;
+            int Wrong = 0;
+
+            int RandomIndex = Randomizer.Next(0, PhysicsDefintions.Length);
+
+            while (Correct + Wrong != PhysicsDefintions.Length)
+            {
+
+                Console.WriteLine(PhysicsDefintions[RandomIndex].Remove(0, 3));
+                Console.WriteLine("Type the number of your answer: ");
+
+
+                char fun = Console.ReadLine()[0];
+
+                if (fun == PhysicsDefintions[RandomIndex][0])
+                {
+
+                    Output[RandomIndex] = true;
+                    Correct++;
+
+                    RandomIndex = Randomizer.Next(0, PhysicsDefintions.Length);
+
+                    if (Correct + Wrong != PhysicsDefintions.Length)
+                    {
+                        do
+                        {
+
+                            RandomIndex = Randomizer.Next(0, PhysicsDefintions.Length);
+
+                        } while (Output[RandomIndex]);
+                    }
+                }
+                else
+                {
+
+                    Output[RandomIndex] = true;
+                    Wrong++;
+
+                    RandomIndex = Randomizer.Next(0, PhysicsDefintions.Length);
+
+                    if (Correct + Wrong != PhysicsDefintions.Length)
+                    {
+                        do
+                        {
+                            RandomIndex = Randomizer.Next(0, PhysicsDefintions.Length);
+
+                        } while (Output[RandomIndex]);
+                    }
+                }
+            }
+
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine($"You got {Correct} correct, and {Wrong} wrong");
+            Console.ResetColor();
+
+        }
+
+        public void checkChemistry()
+        {
+            Console.ForegroundColor = ConsoleColor.DarkCyan;
+            Console.WriteLine("\nYou will be tested on Chemistry now\n");
+            Console.ResetColor();
+
+            Console.WriteLine("Here are the options\n");
+
+            for (int i = 0; i < OptionChemistry.Length; i++)
+            {
+
+                Console.WriteLine(OptionChemistry[i]);
+
+            }
+
+            bool[] Output = new bool[ChemistryDefintions.Length];
+
+            for (int i = 0; i < Output.Length; i++)
+            {
+
+                Output[i] = false;
+
+            }
+
+            Random Randomizer = new Random();
+
+            Console.WriteLine();
+
+            int Correct = 0;
+            int Wrong = 0;
+
+            int RandomIndex = Randomizer.Next(0, ChemistryDefintions.Length);
+
+            while (Correct + Wrong != ChemistryDefintions.Length)
+            {
+
+                Console.WriteLine(ChemistryDefintions[RandomIndex].Remove(0, 3));
+                Console.WriteLine("Type the number of your answer: ");
+                char fun = Console.ReadLine()[0];
+
+                if (fun == ChemistryDefintions[RandomIndex][0])
+                {
+
+                    Output[RandomIndex] = true;
+                    Correct++;
+
+                    RandomIndex = Randomizer.Next(0, ChemistryDefintions.Length);
+
+                    if (Correct + Wrong != ChemistryDefintions.Length)
+                    {
+                        do
+                        {
+
+                            RandomIndex = Randomizer.Next(0, ChemistryDefintions.Length);
+
+                        } while (Output[RandomIndex]);
+
+                    }
+
+                }
+                else
+                {
+                    Output[RandomIndex] = true;
+                    Wrong++;
+
+                    RandomIndex = Randomizer.Next(0, ChemistryDefintions.Length);
+
+                    if (Correct + Wrong != ChemistryDefintions.Length)
+                    {
+                        do
+                        {
+
+                            RandomIndex = Randomizer.Next(0, ChemistryDefintions.Length);
+
+                        } while (Output[RandomIndex]);
+                    }
+                }
+            }
+
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine($"You got {Correct} correct, and {Wrong} wrong");
+            Console.ResetColor();
+
+        }
+
+        public void checkMaths()
+        {
+            Console.ForegroundColor = ConsoleColor.DarkCyan;
+            Console.WriteLine("\nYou will be tested on Maths lastly\n");
+            Console.ResetColor();
+
+            Console.WriteLine("Here are the options\n");
+            for (int i = 0; i < OptionMaths.Length; i++)
+            {
+
+                Console.WriteLine(OptionMaths[i]);
+
+            }
+
+            bool[] Output = new bool[MathsDefinitions.Length];
+
+            for (int i = 0; i < Output.Length; i++)
+            {
+
+                Output[i] = false;
+
+            }
+
+            Random Randomizer = new Random();
+
+
+            Console.WriteLine();
+
+            int Correct = 0;
+            int Wrong = 0;
+
+            int RandomIndex = Randomizer.Next(0, MathsDefinitions.Length);
+
+            while (Correct + Wrong != MathsDefinitions.Length)
+            {
+
+                Console.WriteLine(MathsDefinitions[RandomIndex].Remove(0, 3));
+                Console.WriteLine("Type the number of your answer: ");
+                char fun = Console.ReadLine()[0];
+
+                if (fun == MathsDefinitions[RandomIndex][0])
+                {
+
+                    Output[RandomIndex] = true;
+                    Correct++;
+
+                    RandomIndex = Randomizer.Next(0, MathsDefinitions.Length);
+
+                    if (Correct + Wrong != MathsDefinitions.Length)
+                    {
+                        do
+                        {
+
+                            RandomIndex = Randomizer.Next(0, MathsDefinitions.Length);
+
+                        } while (Output[RandomIndex]);
+
+                    }
+
+                }
+                else
+                {
+
+                    Output[RandomIndex] = true;
+                    Wrong++;
+
+                    RandomIndex = Randomizer.Next(0, MathsDefinitions.Length);
+
+                    if (Correct + Wrong != MathsDefinitions.Length)
+                    {
+                        do
+                        {
+
+                            RandomIndex = Randomizer.Next(0, MathsDefinitions.Length);
+
+                        } while (Output[RandomIndex]);
+                    }
+                }
+            }
+
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine($"You got {Correct} correct, and {Wrong} wrong");
+            Console.ResetColor();
+
+        }
+    }
+}
