@@ -27,6 +27,7 @@ namespace Doggo
                 "American Bully XL, Pipsqueak", //8
                 "Dog, DGOG", //9
                 "Mutt, Jeff" //10
+                "Shitzu, Polka" //11
             };
              
             //1st loop print
