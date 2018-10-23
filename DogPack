@@ -28,6 +28,7 @@ namespace Doggo
                 "Dog, DGOG", //9
                 "Mutt, Jeff" //10
                 "Shitzu, Polka" //11
+                "Pug, Jinchuriki" //12
             };
              
             //1st loop print
