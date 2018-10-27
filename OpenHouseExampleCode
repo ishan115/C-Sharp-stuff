@@ -1,0 +1,104 @@
+using System;
+
+namespace OpenHouse
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            int x = 0;
+            while (x < 1000)
+            {
+                User user = new User();
+                user.intro();
+                user.input();
+                user.display();
+                x++;
+                Console.WriteLine("Number of times played: " + x);
+            }
+        }
+
+        class User
+        {
+            public string name = "";
+
+            public void intro()
+            {
+                Console.WriteLine("Would you like to see your name in 8 different colors?");
+                Console.WriteLine("Press any key to continue....\n");
+                Console.ReadKey();
+            }
+
+            public void input()
+            {
+                Console.WriteLine("Please enter your name: ");
+                name = Console.ReadLine();
+
+            }
+
+            public void display()
+            {
+                Console.WriteLine("Magic!");
+                Console.ForegroundColor = ConsoleColor.Blue;
+                Console.WriteLine(name);
+                Console.ResetColor();
+
+                Console.ForegroundColor = ConsoleColor.Cyan;
+                Console.WriteLine(name);
+                Console.ResetColor();
+
+                Console.ForegroundColor = ConsoleColor.Gray;
+                Console.WriteLine(name);
+                Console.ResetColor();
+
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine(name);
+                Console.ResetColor();
+
+                Console.ForegroundColor = ConsoleColor.Magenta;
+                Console.WriteLine(name);
+                Console.ResetColor();
+
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine(name);
+                Console.ResetColor();
+
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.WriteLine(name);
+                Console.ResetColor();
+
+                Console.WriteLine("\nBut every single color has a dark version.");
+                Console.WriteLine("Here are the following dark colored version of your name:\n");
+
+                Console.ForegroundColor = ConsoleColor.DarkBlue;
+                Console.WriteLine(name);
+                Console.ResetColor();
+
+                Console.ForegroundColor = ConsoleColor.DarkCyan;
+                Console.WriteLine(name);
+                Console.ResetColor();
+
+                Console.ForegroundColor = ConsoleColor.DarkGray;
+                Console.WriteLine(name);
+                Console.ResetColor();
+
+                Console.ForegroundColor = ConsoleColor.DarkGreen;
+                Console.WriteLine(name);
+                Console.ResetColor();
+
+                Console.ForegroundColor = ConsoleColor.DarkMagenta;
+                Console.WriteLine(name);
+                Console.ResetColor();
+
+                Console.ForegroundColor = ConsoleColor.DarkRed;
+                Console.WriteLine(name);
+                Console.ResetColor();
+
+                Console.ForegroundColor = ConsoleColor.DarkYellow;
+                Console.WriteLine(name);
+                Console.ResetColor();
+
+            }
+        }
+    }
+}
