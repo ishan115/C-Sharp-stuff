@@ -24,8 +24,7 @@ namespace StringManipulation
                 String phrase = "colour";
                 Console.WriteLine("Before: {0}", phrase);
                 phrase = phrase.Replace("u", "");
-                Console.WriteLine("After: {0}", phrase);
-                Console.WriteLine();
+                Console.WriteLine("After: {0}", phrase + "\n");
 
             }
 
