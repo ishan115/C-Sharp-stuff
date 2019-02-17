@@ -1,0 +1,700 @@
+/*
+Virtual Pet Selector 8000 made by Ishan Dutta
+MIT License copyright
+Virtual Pet 1.0 Project Submission
+ */
+
+
+using System;
+
+namespace VirtualPet1._0
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.Title = "Virtual Pet Selector 8000";
+
+            Console.Clear();
+            Story si = new Story();
+        }
+    }
+
+    class Pets
+    {
+        public string petname = "";
+        public string cat = "Cat";
+        public string dog = "Dog";
+        public string parrot = "Parrot";
+        public int petlevel = 0;
+        public string toy = "";
+        public int toylevel = 0;
+        public string input = "";
+        public bool feed = true;
+        public int hunger = 100;
+        public int playerlevel = 10;
+        public int coins = 0;
+        public int playercoins = 0;
+        public bool coincheck = true;
+        public int tries = 0;
+
+        public void intro()
+        {
+            Console.WriteLine("Welcome to Ishan's Virtual Pet Selector 8000");
+            Console.WriteLine("Press any key to get started...");
+
+            Console.ReadKey();
+            Console.Clear();
+
+            Console.WriteLine("Please select the type of pet you would like to take care of");
+
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine(cat);
+            Console.ResetColor();
+
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.WriteLine(dog);
+            Console.ResetColor();
+
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine(parrot);
+            Console.ResetColor();
+
+            input = Console.ReadLine();
+
+            if (input.ToLower() == "dog")
+            {
+                Console.Clear();
+                Dog doggo = new Dog();
+                doggo.start();
+                doggo.playerstart();
+                doggo.doglevel();
+
+            }
+            else if (input.ToLower() == "cat")
+            {
+                Console.Clear();
+                Cat catto = new Cat();
+                catto.start();
+                catto.playerstart();
+                catto.catlevel();
+
+                Console.ReadKey();
+
+            }
+            else if (input.ToLower() == "parrot")
+            {
+                Console.Clear();
+                Parrot parrotto = new Parrot();
+                parrotto.start();
+                parrotto.playerstart();
+                parrotto.parrotlevel();
+
+            }
+            else
+
+            {
+                Console.WriteLine("Incorrect answer! Please try again...");
+                Console.Clear();
+                intro();
+            }
+
+        }
+
+        public void start()
+        {
+            Console.WriteLine("Excellent choice!! Please name your pet:");
+            petname = Console.ReadLine();
+
+            Console.Write("The name you have selected is ");
+
+            Console.ForegroundColor = ConsoleColor.DarkRed;
+            Console.Write(petname);
+            Console.ResetColor();
+
+            Console.Write(".\n\n");
+
+            Console.WriteLine("Press any key to start....");
+            Console.ReadKey();
+
+            Console.Clear();
+        }
+
+        public void playerstart()
+        {
+            Console.WriteLine("Currently the player level is ");
+            Console.ForegroundColor = ConsoleColor.DarkRed;
+            Console.Write(playerlevel);
+            Console.ResetColor();
+            Console.Write(".\n\n");
+
+            Console.WriteLine("Currently the pet level is ");
+            Console.ForegroundColor = ConsoleColor.DarkRed;
+            Console.Write(petlevel);
+            Console.ResetColor();
+            Console.Write(".\n\n");
+
+            Console.Write("You have ");
+            Console.ForegroundColor = ConsoleColor.DarkCyan;
+            Console.Write(coins);
+            Console.ResetColor();
+            Console.Write(" coins.");
+
+            Console.ReadKey();
+            Console.Clear();
+
+            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.WriteLine("Let us begin our adventure");
+            Console.ResetColor();
+            Console.WriteLine("\n\n");
+
+            Console.WriteLine("Press any key to continue....");
+            Console.ReadKey();
+
+            Console.Clear();
+        }
+    }
+
+    class Cat : Pets
+    {
+        public void catlevel()
+        {
+            Console.WriteLine("Your cat is currently level ");
+
+            Console.ForegroundColor = ConsoleColor.DarkRed;
+            Console.Write(petlevel);
+            Console.ResetColor();
+            Console.WriteLine();
+
+            Console.WriteLine("Would you like to feed your cat?");
+            input = Console.ReadLine();
+
+            if (input.ToLower() == "yes")
+            {
+
+                Console.WriteLine("Your cat is happy. He says thank you for feeding them.\n");
+                Console.Write("Your level is now: ");
+
+                Console.ForegroundColor = ConsoleColor.DarkRed;
+                Console.Write(playerlevel + 1);
+                Console.ResetColor();
+
+                Console.WriteLine("\nYay!! Your cat is now full. Please wait till they are hungry again.");
+                Console.Write("Your cat's hunger level is now: ");
+
+                Console.ForegroundColor = ConsoleColor.DarkCyan;
+                Console.Write(hunger);
+                Console.ResetColor();
+
+                Console.Write("\nYour pet level is now: ");
+
+                Console.ForegroundColor = ConsoleColor.DarkCyan;
+                Console.Write(petlevel + 1);
+                Console.ResetColor();
+
+                Console.Write("\nYou have ");
+                Console.ForegroundColor = ConsoleColor.DarkCyan;
+                Console.Write(coins + 50);
+                Console.ResetColor();
+                Console.Write(" coins.");
+
+                coins = 50;
+
+                coincheck = true;
+
+                feed = true; //used for later usage
+
+            }
+            else
+            {
+                Console.WriteLine("That's alright! But your cat is very hungry, are you sure you do not want to feed your cat?");
+                input = Console.ReadLine();
+
+                if (input.ToLower() == "yes")
+                {
+                    Console.Write("\nYou have not taken care of your cat, you have lost a level.\nYour level is now: ");
+
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.Write(playerlevel - 1);
+                    Console.ResetColor();
+
+                    Console.Write("\nYour pet level is now: ");
+
+                    Console.ForegroundColor = ConsoleColor.DarkCyan;
+                    Console.Write(petlevel);
+                    Console.ResetColor();
+
+                    Console.Write("\nYou have ");
+                    Console.ForegroundColor = ConsoleColor.DarkCyan;
+                    Console.Write(coins);
+                    Console.ResetColor();
+                    Console.Write(" coins.");
+
+                    Console.Clear();
+
+                    Console.Write("Oh! What's this? Your pet found a bag of ");
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    Console.Write("50");
+                    Console.ResetColor();
+                    Console.Write(" coins.\n");
+                    Console.WriteLine("Please take care of your pet next time!");
+
+                    coins = 50;
+
+                    coincheck = false;
+
+                    Console.ReadKey();
+
+                    Console.Clear();
+                }
+                else
+                {
+                    Console.WriteLine("Your cat is happy. He says thank you for feeding them.\n");
+                    Console.Write("Your level is now: ");
+
+                    Console.ForegroundColor = ConsoleColor.DarkRed;
+                    Console.Write(playerlevel + 1);
+                    Console.ResetColor();
+
+                    Console.WriteLine("\nYay!! Your cat is now full. Please wait till they are hungry again.");
+                    Console.Write("Your cat's hunger level is now: ");
+
+                    Console.ForegroundColor = ConsoleColor.DarkCyan;
+                    Console.Write(hunger);
+                    Console.ResetColor();
+
+                    Console.Write("\nYour pet level is now: ");
+
+                    Console.ForegroundColor = ConsoleColor.DarkCyan;
+                    Console.Write(petlevel + 1);
+                    Console.ResetColor();
+
+                    Console.Write("\nYou have ");
+                    Console.ForegroundColor = ConsoleColor.DarkCyan;
+                    Console.Write(coins + 50);
+                    Console.ResetColor();
+                    Console.Write(" coins.");
+
+                    coins = 50;
+
+                    coincheck = true;
+
+                    feed = true; //used for later usage
+
+                    Console.WriteLine("\n\nPress any key to proceed....");
+                    Console.ReadKey();
+                }
+            }
+        }
+    }
+
+    class Dog : Pets
+    {
+        public void doglevel()
+        {
+            Console.WriteLine("Your dog is currently level ");
+
+            Console.ForegroundColor = ConsoleColor.DarkRed;
+            Console.Write(petlevel);
+            Console.ResetColor();
+            Console.WriteLine();
+
+            Console.WriteLine("Would you like to feed your dog?");
+            input = Console.ReadLine();
+
+            if (input.ToLower() == "yes")
+            {
+
+                Console.WriteLine("Your dog is happy. He says thank you for feeding them.\n");
+                Console.Write("Your level is now: ");
+
+                Console.ForegroundColor = ConsoleColor.DarkRed;
+                Console.Write(playerlevel + 1);
+                Console.ResetColor();
+
+                Console.WriteLine("\nYay!! Your dog is now full. Please wait till they are hungry again.");
+                Console.Write("Your dog's hunger level is now: ");
+
+                Console.ForegroundColor = ConsoleColor.DarkCyan;
+                Console.Write(hunger);
+                Console.ResetColor();
+
+                Console.Write("\nYour pet level is now: ");
+
+                Console.ForegroundColor = ConsoleColor.DarkCyan;
+                Console.Write(petlevel + 1);
+                Console.ResetColor();
+
+                Console.Write("\nYou have ");
+                Console.ForegroundColor = ConsoleColor.DarkCyan;
+                Console.Write(coins + 50);
+                Console.ResetColor();
+                Console.Write(" coins.");
+
+                coins = 50;
+
+                feed = true; //used for later usage
+
+            }
+            else
+            {
+                Console.WriteLine("That's alright! But your dog is very hungry, are you sure you do not want to feed your cat?");
+                input = Console.ReadLine();
+
+                if (input.ToLower() == "yes")
+                {
+                    Console.Write("\nYou have not taken care of your dog, you have lost a level.\nYour level is now: ");
+
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.Write(playerlevel - 1);
+                    Console.ResetColor();
+
+                    Console.Write("\nYour pet level is now: ");
+
+                    Console.ForegroundColor = ConsoleColor.DarkCyan;
+                    Console.Write(petlevel);
+                    Console.ResetColor();
+
+                    Console.Write("\nYou have ");
+                    Console.ForegroundColor = ConsoleColor.DarkCyan;
+                    Console.Write(coins);
+                    Console.ResetColor();
+                    Console.Write(" coins.");
+
+                    Console.Clear();
+
+                    Console.Write("Oh! What's this? Your pet found a bag of ");
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    Console.Write("50");
+                    Console.ResetColor();
+                    Console.Write(" coins.\n");
+                    Console.WriteLine("Please take care of your pet next time!");
+
+                    coins = 50;
+
+                    coincheck = false;
+
+                    Console.ReadKey();
+
+                    Console.Clear();
+
+                }
+                else
+                {
+                    Console.WriteLine("Your dog is happy. He says thank you for feeding them.\n");
+                    Console.Write("Your level is now: ");
+
+                    Console.ForegroundColor = ConsoleColor.DarkRed;
+                    Console.Write(playerlevel + 1);
+                    Console.ResetColor();
+
+                    Console.WriteLine("\nYay!! Your dog is now full. Please wait till they are hungry again.");
+                    Console.Write("Your dog's hunger level is now: ");
+
+                    Console.ForegroundColor = ConsoleColor.DarkCyan;
+                    Console.Write(hunger);
+                    Console.ResetColor();
+
+                    Console.Write("\nYour pet level is now: ");
+
+                    Console.ForegroundColor = ConsoleColor.DarkCyan;
+                    Console.Write(petlevel + 1);
+                    Console.ResetColor();
+
+                    Console.Write("\nYou have ");
+                    Console.ForegroundColor = ConsoleColor.DarkCyan;
+                    Console.Write(coins + 50);
+                    Console.ResetColor();
+                    Console.Write(" coins.");
+
+                    coins = 50;
+
+                    feed = true; //used for later usage
+
+                    Console.WriteLine("\n\nPress any key to proceed....");
+                    Console.ReadKey();
+                }
+            }
+        }
+    }
+
+    class Parrot : Pets
+    {
+        public void parrotlevel()
+        {
+            Console.WriteLine("Your parrot is currently level ");
+
+            Console.ForegroundColor = ConsoleColor.DarkRed;
+            Console.Write(petlevel);
+            Console.ResetColor();
+            Console.WriteLine();
+
+            Console.WriteLine("Would you like to feed your parrot?");
+            input = Console.ReadLine();
+
+            if (input.ToLower() == "yes")
+            {
+
+                Console.WriteLine("Your parrot is happy. He says thank you for feeding them.\n");
+                Console.Write("Your level is now: ");
+
+                Console.ForegroundColor = ConsoleColor.DarkRed;
+                Console.Write(playerlevel + 1);
+                Console.ResetColor();
+
+                Console.WriteLine("\nYay!! Your parrot is now full. Please wait till they are hungry again.");
+                Console.Write("Your parrot's hunger level is now: ");
+
+                Console.ForegroundColor = ConsoleColor.DarkCyan;
+                Console.Write(hunger);
+                Console.ResetColor();
+
+                Console.Write("\nYour pet level is now: ");
+
+                Console.ForegroundColor = ConsoleColor.DarkCyan;
+                Console.Write(petlevel + 1);
+                Console.ResetColor();
+
+                Console.Write("\nYou have ");
+                Console.ForegroundColor = ConsoleColor.DarkCyan;
+                Console.Write(coins + 50);
+                Console.ResetColor();
+                Console.Write(" coins.");
+
+                coins = 50;
+
+                feed = true; //used for later usage
+
+            }
+            else
+            {
+                Console.WriteLine("That's alright! But your parrot is very hungry, are you sure you do not want to feed your cat?");
+                input = Console.ReadLine();
+
+                if (input.ToLower() == "yes")
+                {
+                    Console.Write("\nYou have not taken care of your parrot, you have lost a level.\nYour level is now: ");
+
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.Write(playerlevel - 1);
+                    Console.ResetColor();
+
+                    Console.Write("\nYour pet level is now: ");
+
+                    Console.ForegroundColor = ConsoleColor.DarkCyan;
+                    Console.Write(petlevel);
+                    Console.ResetColor();
+
+                    Console.Write("\nYou have ");
+                    Console.ForegroundColor = ConsoleColor.DarkCyan;
+                    Console.Write(coins);
+                    Console.ResetColor();
+                    Console.Write(" coins.");
+
+                    Console.Clear();
+
+                    Console.Write("Oh! What's this? Your pet found a bag of ");
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    Console.Write("50");
+                    Console.ResetColor();
+                    Console.Write(" coins.\n");
+                    Console.WriteLine("Please take care of your pet next time!");
+
+                    coins = 50;
+
+                    Console.ReadKey();
+
+                    Console.Clear();
+
+                    coincheck = false;
+                }
+                else
+                {
+                    Console.WriteLine("Your parrot is happy. He says thank you for feeding them.\n");
+                    Console.Write("Your level is now: ");
+
+                    Console.ForegroundColor = ConsoleColor.DarkRed;
+                    Console.Write(playerlevel + 1);
+                    Console.ResetColor();
+
+                    Console.WriteLine("\nYay!! Your parrot is now full. Please wait till they are hungry again.");
+                    Console.Write("Your parrot's hunger level is now: ");
+
+                    Console.ForegroundColor = ConsoleColor.DarkCyan;
+                    Console.Write(hunger);
+                    Console.ResetColor();
+
+                    Console.Write("\nYour pet level is now: ");
+
+                    Console.ForegroundColor = ConsoleColor.DarkCyan;
+                    Console.Write(petlevel + 1);
+                    Console.ResetColor();
+
+                    Console.Write("\nYou have ");
+                    Console.ForegroundColor = ConsoleColor.DarkCyan;
+                    Console.Write(coins + 50);
+                    Console.ResetColor();
+                    Console.Write(" coins.");
+
+                    coins = 50;
+
+                    feed = true; //used for later usage
+
+                    Console.WriteLine("\n\nPress any key to proceed....");
+                    Console.ReadKey();
+                }
+            }
+        }
+    }
+
+    class Story
+    {
+        Pets pi = new Pets();
+        Store si = new Store();
+
+        public Story()
+        {
+            pi.intro();
+            level1();
+            level2();
+            si.storestart();
+            si.shop();
+            level3();
+
+            Console.ReadKey();
+            Console.Clear();
+        }
+
+        public void level1()
+        {
+            Console.Clear();
+            Console.WriteLine("You have set off on a long adventure because your boss was mean and hates you.");
+            Console.WriteLine("You also want your pets to have fun however.");
+            Console.WriteLine("But you cannot leave your pet alone, what will you ever do?\n");
+
+            Console.ForegroundColor = ConsoleColor.DarkGray;
+            for (int i = 0; i < 11; i++)
+            {
+                Console.WriteLine(".");
+            }
+            Console.ResetColor();
+
+            Console.WriteLine("\nA lot of time passes by and you finally think of an idea.");
+            Console.Write("You say to yourself, \"");
+
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.Write("I can send my pets on a boat with my trusty assistant");
+            Console.ResetColor();
+            Console.Write(" \".");
+
+            Console.ReadKey();
+            Console.Clear();
+        }
+
+        public void level2()
+        {
+            Console.WriteLine("Your pet is now sailing on the high seas with your assistant taking care of them.");
+
+            Console.ForegroundColor = ConsoleColor.DarkGray;
+            for (int i = 1; i < 4; i++)
+            {
+                Console.WriteLine(i + " days later.");
+            }
+            Console.ResetColor();
+
+            Console.WriteLine("Your assistant reports that your pet has been eating properly and drinking lots of water.");
+
+            Console.Clear();
+
+            Console.WriteLine("You then ask your assistant to stop by an island to buy some toys.");
+
+            Console.Write("\nYour assistant finds a nearby island called ");
+
+            Console.ForegroundColor = ConsoleColor.Magenta;
+            Console.Write("Tiki Hama");
+            Console.ResetColor();
+            Console.Write(".\n\n");
+
+            Console.WriteLine("You arrive.\n\n");
+
+            Console.WriteLine("Press any key to continue....");
+
+            Console.ReadKey();
+            Console.Clear();
+        }
+
+        public void level3()
+        {
+
+            Console.WriteLine("You and your pet finally meet days later and have one big giant hug.\n");
+
+            Console.WriteLine("Thank you for playing my Virtual Pet selector.\n");
+
+            Console.WriteLine("Have a great day!!");
+        }
+    }
+
+    class Store : Pets
+    {
+        public void storestart()
+        {
+            Console.ForegroundColor = ConsoleColor.Magenta;
+            Console.WriteLine("Welcome to Tiki Hama's world-famous pet store!!\n");
+            Console.ResetColor();
+        }
+        public void shop() //need to add economy system where player coins would be deducted accordingly
+        {
+            Console.WriteLine("What would you like to buy? Please enter the number.");
+
+            Console.Write("1) ");
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.Write("Chew Toy (50 coins)\n");
+            Console.ResetColor();
+
+            Console.Write("2) ");
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.Write("Doll (50 coins)\n");
+            Console.ResetColor();
+
+            Console.Write("3) ");
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.Write("Ball (60 coins and Pet Level 2)\n");
+            Console.ResetColor();
+
+            toy = Console.ReadLine();
+
+            if (toy == "1")
+            {
+                Console.WriteLine("Excellent! You can now give your pet a Chew Toy.\n");
+                Console.WriteLine("Thank you for visiting Tiki Hama. See you later.");
+
+                Console.ReadKey();
+
+            } else if (toy == "2")
+            {
+                Console.WriteLine("Excellent! You can now give your pet a Doll\n");
+                Console.WriteLine("Thank you for visiting Tiki Hama. See you later.");
+
+                Console.ReadKey();
+            }
+            else
+            {
+                Console.WriteLine("You don't have enough coins to buy anything or your pet level is not high enough.");
+                Console.WriteLine("Would you like to go back to the shop?");
+
+                input = Console.ReadLine();
+
+                if (input.ToLower() == "yes")
+                {
+                    shop();
+                }
+                else
+                {
+                    Console.WriteLine("Thank you for visiting Tiki Hama. See you later.");
+                }
+            }
+
+            Console.Clear();
+        }
+    }
+}
