@@ -359,4 +359,37 @@ namespace Adopt_a_Bot
     }
 }
 
+//Info class for inheritence (soon to be used)
+    public abstract class Info
+    {
+        public string Name;
+        public string Color;
 
+        public Info()
+        {
+
+        }
+    }
+
+
+//TEST Class
+
+namespace Adopt_a_Bot
+{
+    class SkynetTest : Info
+    {
+        public SkynetTest()
+        {
+
+
+
+        }
+
+        public Sky(string newName) : this(newName)
+        {
+            
+        }
+
+        public Sky
+    }
+}
