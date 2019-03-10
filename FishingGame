@@ -1,0 +1,434 @@
+using System;
+using System.Collections.Generic;
+using static System.Console;
+namespace FishingGameFinal
+{
+    class Program
+    {
+        static void Main()
+        {
+            HUD hud = new HUD();
+        }
+    }
+
+    class Net
+    {
+        string name;
+        string action;
+        private string catches;
+        string effect;
+
+        HUD hud_;
+
+        Random rng = new Random();
+
+        int net;
+
+        public string currentNet;
+
+        int check;
+
+        public Net(HUD hud)
+        {
+            hud_ = hud;
+            Clear();
+
+        }
+
+        public string Name { get => name; set => name = value; }
+        public string Action { get => action; set => action = value; }
+        public string Effect { get => effect; set => effect = value;  }
+
+        public void Cast()
+        {
+            Clear();
+            ForegroundColor = ConsoleColor.Magenta;
+            Name = "Cast Net: A small round net with weights on the edges.";
+            Action = "Action: You lower your fishing rod into the pond and cast a net of 50,000 sq. ft. to capture literally everything.";
+
+            WriteLine(Name + "\n" + Action);
+            ResetColor();
+
+            ReadKey();
+            Clear();
+
+            ForegroundColor = ConsoleColor.Red;
+            catches = "Possible catche results: bluestripe, snapper, surgeonfish, tuna, herring, anchovy, capelin";
+            WriteLine(catches);
+            ResetColor();
+
+            ReadKey();
+            Clear();
+
+            ReadKey();
+            Clear();
+        }
+
+        private void Durability()
+        {
+            int[] dmgvalue = { 10, 20, 30, 40, 50, 60, 70, 80, 90, 100 };
+
+            int dmg = dmgvalue.Length;
+
+            if (check < dmgvalue.Length)
+            {
+                WriteLine("The current net damage is " + dmgvalue[check] + "%");
+            }
+            else
+            {
+
+            }
+
+            check++;
+        }
+
+        public void Fyke()
+        {
+            Clear();
+            ForegroundColor = ConsoleColor.Magenta;
+            Name = "Fyke: A long cylindrical netting bag";
+            Action = "Action: Gently caress your net underwater to get the best results.";
+
+            WriteLine(Name + "\n" + Action);
+            ResetColor();
+
+            ReadKey();
+            Clear();
+
+            ForegroundColor = ConsoleColor.Red;
+            catches = "Possible catch results: eel, plant, trash, nothing";
+            WriteLine(catches);
+            ResetColor();
+
+            ReadKey();
+            Clear();
+
+            ReadKey();
+            Clear();
+
+        }
+
+        public void Hand()
+        {
+            Clear();
+            ForegroundColor = ConsoleColor.Magenta;
+            Name = "Hand net: A long stiff handle with a hooped net at the end";
+            Action = "Action: Shove your fist down into the water to use this net.";
+
+            WriteLine(Name + "\n" + Action);
+            ResetColor();
+
+            ReadKey();
+            Clear();
+
+            ForegroundColor = ConsoleColor.Red;
+            catches = "Possible catch results: muskellunge, northern pike, eel, nothing";
+            WriteLine(catches);
+            ResetColor();
+
+            ReadKey();
+            Clear();
+        }
+
+
+    }
+
+    class HUD
+    {
+
+        public string netName;
+
+        public string fykeNet;
+        public string handNet;
+
+        public static bool netExist = false;
+
+        string input;
+
+        public HUD()
+        {
+            Net fykeNet = new Net(this);
+            Net handNet = new Net(this);
+
+            fykeNet.currentNet = "Fyke";
+            handNet.currentNet = "Hand";
+
+            Fish.netinv.Add(fykeNet);
+            Fish.netinv.Add(handNet);
+
+            menu();
+        }
+
+        public void ChooseNet()
+        {
+            if (netExist == true)
+            {
+                WriteLine("Which net would you like to select?");
+                WriteLine("1) Fyke\n2) Hand\n3) Cast");
+            }
+            else
+            {
+                WriteLine("Which net would you like to select?");
+                WriteLine("1) Fyke\n2) Hand");
+            }
+
+            input = ReadLine();
+
+            if (input == "1")
+            {
+                Net.Fyke();
+                hud_.netName = "Fyke";
+                net = Convert.ToInt32(input);
+
+            }
+            else if (input == "2")
+            {
+                Hand();
+                hud_.netName = "Hand";
+                net = Convert.ToInt32(input);
+
+            }
+            else if (input == "3" & netExist == true)
+            {
+                Cast();
+                hud_.netName = "Cast";
+                net = Convert.ToInt32(input);
+            }
+
+            if (net == 1)
+            {
+                Name = "Fyke";
+                Action = "Gently caress your net underwater to get the best results.";
+            }
+            else if (net == 2)
+            {
+                Name = "Hand";
+                Action = "Shove your fist down into the water to use this net.";
+            }
+            else if (net == 3)
+            {
+                Name = "Cast";
+                Action = "You lower your fishing rod into the pond and cast a net of 50,000 sq. ft. to capture literally everything.";
+            }
+
+            WriteLine("The current selected net is: " + Name);
+            WriteLine("Press enter to clear..");
+            ReadKey();
+            Clear();
+        }
+
+        public void menu()
+        {
+            string input;
+            while (true)
+            {
+
+                try
+                {
+
+                    WriteLine("Please select from one of the three option?");
+
+                    ForegroundColor = ConsoleColor.Gray;
+                    WriteLine("(It is advised to select the net type first before proceeding)\n");
+                    ResetColor();
+
+                    WriteLine("1) Net Type\n2) Fish\n3) Inventory\n4) Store\n5) Exit");
+
+
+                    input = ReadLine();
+
+                    if (input == "1")
+                    {
+                        Fish.netinv[0].Options();
+
+                        ForegroundColor = ConsoleColor.Cyan;
+                        WriteLine($"Your current net selected is: {net.Name}");
+                        ResetColor();
+                    }
+                    else if (input == "2")
+                    {
+                        Fish fish = new Fish(netName);
+
+                        ForegroundColor = ConsoleColor.Cyan;
+                        WriteLine($"Your current net selected is: {fish.nameofnet}");
+                        WriteLine($"Your current fish selected is: {fish.FishName}");
+                        ResetColor();
+
+                    }
+                    else if (input == "3")
+                    {
+                        ForegroundColor = ConsoleColor.Red;
+                        WriteLine("Inventory:");
+                        ResetColor();
+                        foreach (string print in Fish.inventory)
+                        {
+                            WriteLine(print + "\n");
+                        }
+                        ReadKey();
+                    } 
+                    else if (input == "4")
+                    {
+                        Store st = new Store();
+                    }
+                    else if (input == "5")
+                    {
+                        Environment.Exit(0);
+                    }
+                    else
+                    { 
+
+                    }
+                }
+                catch
+                {
+                    WriteLine("Try Again!");
+                    break;
+                }
+            }
+        }
+    }
+
+    class Fish
+    {
+        public static List<string> inventory = new List<string>();
+        public static List<Net> netinv = new List<Net>();
+
+        Random rng = new Random();
+
+        public string fishname;
+        public string nameofnet;
+
+        public string FishName { get => fishname; set => fishname = value; }
+
+        public Fish(string net_)
+        {
+            nameofnet = net_;
+            Clear();
+
+            Options();
+
+        }
+
+        public void Options()
+        {
+            Time();
+            Console.ReadKey();
+            Clear();
+
+            WriteLine("You are currently fishing...");
+
+
+            string[] items0 = { "bluestripe", "snapper", "surgeonfish", "tuna", "herring", "anchovy", "capelin" };
+
+            if (nameofnet == "Fyke")
+            {
+                string[] items1 = { "eel", "plant", "trash", "nothing" };
+                string items1Choice = items1[rng.Next(items1.Length)];
+                Console.WriteLine($"You raise your Fyke out, and have caught... a {items1Choice} ");
+                fishname = items1Choice;
+
+               if (fishname != "nothing")
+               {
+                    inventory.Add(fishname);
+               }
+            }
+
+            else if (nameofnet == "Hand")
+            {
+                string[] items2 = { "muskellunge" , "northern pike" ,"eel" , "nothing" };
+                string items2Choice = items2[rng.Next(items2.Length)];
+                Console.WriteLine($"You raise your Hand out, and have caught... a {items2Choice} ");
+                fishname = items2Choice; // not showing cuz out of scope
+
+                if (fishname != "nothing")
+                {
+                    inventory.Add(fishname);
+                }
+            }
+
+            WriteLine("Press enter to clear..");
+            ReadKey();
+            Clear();
+        }
+        public void Time()
+        {
+            Console.ForegroundColor = ConsoleColor.Red;
+            int[] time = { 2, 3, 4, 5, };
+            int timeInt = time[rng.Next(time.Length)];
+            Console.WriteLine($"{timeInt} minutes have passed.");
+            ResetColor();
+        }
+    }
+
+    class Store
+    {
+        public Store()
+        {
+            option();
+        }
+
+        public string name;
+        public string fish;
+
+        public int coins;
+
+        public string choice;
+
+        public void option()
+        {
+            while (true)
+            {
+                WriteLine("Do you want to\n1) Buy\n2) Sell\n3) Leave");
+                choice = ReadLine();
+
+                if (choice == "1")
+                {
+                    Clear();
+                    WriteLine("You have chosen to buy things from the store!\n");
+                    Write("You can currently buy the ");
+                    ForegroundColor = ConsoleColor.Red;
+                    Write("Cast Net");
+                    ResetColor();
+                    Write(".\n");
+                    WriteLine("This will cost you 5 coins");
+                    WriteLine("Would you like to buy the Cast Net?\n1) Yes\n2) No");
+
+                    choice = ReadLine();
+
+                    if (choice == "1" & coins >= 5)
+                    {
+                        WriteLine("You have bought the Cast Net!");
+                        Net.netExist = true;
+                    }
+                    else
+                    {
+                        WriteLine("You don't have enough coins!");
+                    }
+                }
+                else if (choice == "2")
+                {
+                    Clear();
+                    WriteLine("You have chosen to sell things from the store!\n");
+                    Write("You currently have ");
+                    Write(Fish.inventory.Count);
+                    Write(" items to sell.\n");
+
+                    ReadKey();
+                    Clear();
+
+                    Write("You have received ");
+                    Write(Fish.inventory.Count);
+                    Write(" coins.\n");
+
+                    coins = Fish.inventory.Count;
+                    Fish.inventory.Clear();
+                }
+                else if (choice == "3")
+                {
+                    break;
+                }
+            }
+        }
+
+    }
+}
