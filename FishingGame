@@ -1,5 +1,5 @@
-//Made by Ishan
-//Assistance from Jethro for complex integration
+//Made by Ishan Dutta
+//Assistance from Jethro for logic / syntax help
 
 using System;
 using System.Collections.Generic;
@@ -289,7 +289,6 @@ namespace FishingGameFinal
                 {
                     throw new NotImplementedException();
                 }
-                WriteLine("Try Again!");
             }
         }
     }
@@ -407,11 +406,15 @@ namespace FishingGameFinal
                     WriteLine("You have chosen to buy things from the store!\n");
                     Write("You can currently buy the ");
                     ForegroundColor = ConsoleColor.Red;
-                    Write("Cast Net");
+                    Write("1) Cast Net\n");
+                    Write("2) Fyke Net\n");
+                    Write("3) Hand Net\n");
                     ResetColor();
-                    Write(".\n");
-                    WriteLine("This will cost you 5 coins");
-                    WriteLine("Would you like to buy the Cast Net?\n1) Yes\n2) No");
+
+                    ForegroundColor = ConsoleColor.Cyan;
+                    WriteLine("Each will cost you 5 coins\n");
+                    ResetColor();
+                    WriteLine("What would you like to buy?\n1) Cast\n2) Fyke\n3) Hand");
 
                     choice = ReadLine();
 
@@ -421,6 +424,23 @@ namespace FishingGameFinal
                         Net net = new Net(hud);
                         net.Name = "Cast";
                         Fish.netinv.Add(net);
+                        ReadKey();
+                    }
+                    else if (choice == "2" & coins >= 5)
+                    {
+                        WriteLine("You have bought the Fyke Net!");
+                        Net net = new Net(hud);
+                        net.Name = "Fyke";
+                        Fish.netinv.Add(net);
+                        ReadKey();
+                    }
+                    else if (choice == "3" & coins >= 5)
+                    {
+                        WriteLine("You have bought the Hand Net!");
+                        Net net = new Net(hud);
+                        net.Name = "Hand";
+                        Fish.netinv.Add(net);
+                        ReadKey();
                     }
                     else
                     {
