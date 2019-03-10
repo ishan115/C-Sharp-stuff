@@ -11,6 +11,10 @@ namespace FishingGameFinal
     {
         static void Main()
         {
+            Title = "Something-Smells-Fishy2000, made by Ishan";
+            WriteLine("Welcome to Something-Smells-Fishy2000!!!");
+            WriteLine("\n\nPress any key to continue...");
+            ReadKey();
             HUD hud = new HUD();
         }
     }
@@ -69,7 +73,10 @@ namespace FishingGameFinal
 
             if (check < dmgvalue.Length)
             {
-                WriteLine("The current net damage is " + dmgvalue[check] + "%");
+                Write("The current net damage is ");
+                ForegroundColor = ConsoleColor.Red;
+                Write(dmgvalue[check] + "%\n");
+                ResetColor();
             }
             else
             {
@@ -166,7 +173,7 @@ namespace FishingGameFinal
                 int index = 1;
                 foreach (Net net in Fish.netinv)
                 {
-                    WriteLine(index + net.Name);
+                    WriteLine(index + ") " + net.Name);
                     index++;
                 }
 
@@ -211,7 +218,7 @@ namespace FishingGameFinal
             }
 
             WriteLine("The current selected net is: " + currentNet.Name);
-            WriteLine("Press enter to clear..");
+            WriteLine("\nPress enter to clear..");
             ReadKey();
             Clear();
         }
@@ -225,16 +232,18 @@ namespace FishingGameFinal
                 try
                 {
 
-                    WriteLine("Please select from one of the three option?");
+                    WriteLine("Please select from one of the five option?");
 
-                    ForegroundColor = ConsoleColor.Gray;
+                    ForegroundColor = ConsoleColor.DarkGray;
                     WriteLine("(It is advised to select the net type first before proceeding)\n");
                     ResetColor();
 
-                    WriteLine("1) Net Type\n2) Fish\n3) Inventory\n4) Store\n5) Exit");
+                    WriteLine("1) Net Type\n2) Fish\n3) Inventory\n4) Store\n5) Exit\n\n\n");
 
-
+                    ForegroundColor = ConsoleColor.Red;
                     input = ReadLine();
+                    ResetColor();
+                    Clear();
 
                     if (input == "1")
                     {
@@ -264,13 +273,20 @@ namespace FishingGameFinal
                     else if (input == "3")
                     {
                         ForegroundColor = ConsoleColor.Red;
+                        int count = 1;
                         WriteLine("Inventory:");
                         ResetColor();
                         foreach (string print in Fish.inventory)
                         {
-                            WriteLine(print + "\n");
+                            WriteLine($"{count}. {print}");
+                            count++;
                         }
+
+                        ForegroundColor = ConsoleColor.Blue;
+                        WriteLine("Press any key to go back to the main menu...");
+                        ResetColor();
                         ReadKey();
+                        Clear();
                     }
                     else if (input == "4")
                     {
@@ -329,7 +345,11 @@ namespace FishingGameFinal
             {
                 string[] items1 = { "eel", "plant", "trash", "nothing" };
                 string items1Choice = items1[rng.Next(items1.Length)];
-                Console.WriteLine($"You raise your Fyke out, and have caught... a {items1Choice} ");
+                WriteLine($"You raise your Cast out, and have caught... a ");
+                ForegroundColor = ConsoleColor.Blue;
+                Write(items1Choice);
+                ResetColor();
+                WriteLine();
                 fishname = items1Choice;
 
                 if (fishname != "nothing")
@@ -342,7 +362,11 @@ namespace FishingGameFinal
             {
                 string[] items2 = { "muskellunge", "northern pike", "eel", "nothing" };
                 string items2Choice = items2[rng.Next(items2.Length)];
-                Console.WriteLine($"You raise your Hand out, and have caught... a {items2Choice} ");
+                Write($"\nYou raise your Hand out, and have caught... a ");
+                ForegroundColor = ConsoleColor.Blue; 
+                Write(items2Choice);
+                ResetColor();
+                WriteLine();
                 fishname = items2Choice; // not showing cuz out of scope
 
                 if (fishname != "nothing")
@@ -353,9 +377,13 @@ namespace FishingGameFinal
             else if (nameofnet == "Cast")
             {
                 string[] items0 = { "bluestripe", "snapper", "surgeonfish", "tuna", "herring", "anchovy", "capelin" };
-                string items2Choice = items0[rng.Next(items0.Length)];
-                Console.WriteLine($"You raise your Cast out, and have caught... a {items2Choice} ");
-                fishname = items2Choice;
+                string items0Choice = items0[rng.Next(items0.Length)];
+                WriteLine($"You raise your Cast out, and have caught... a ");
+                ForegroundColor = ConsoleColor.Blue;
+                Write(items0Choice);
+                ResetColor();
+                WriteLine();
+                fishname = items0Choice;
 
                 if (fishname != "nothing")
                 {
@@ -397,6 +425,12 @@ namespace FishingGameFinal
         {
             while (true)
             {
+                WriteLine("Welcome to the store! You can buy nets from here in case you break yours.");
+
+                ForegroundColor = ConsoleColor.DarkGray;
+                WriteLine("(Remember that once you exit the store, you will loose all coins, so make sure to spend wisely)\n");
+                ResetColor();
+
                 WriteLine("Do you want to\n1) Buy\n2) Sell\n3) Leave");
                 choice = ReadLine();
 
@@ -404,7 +438,7 @@ namespace FishingGameFinal
                 {
                     Clear();
                     WriteLine("You have chosen to buy things from the store!\n");
-                    Write("You can currently buy the ");
+                    Write("You can currently buy the \n");
                     ForegroundColor = ConsoleColor.Red;
                     Write("1) Cast Net\n");
                     Write("2) Fyke Net\n");
@@ -412,7 +446,7 @@ namespace FishingGameFinal
                     ResetColor();
 
                     ForegroundColor = ConsoleColor.Cyan;
-                    WriteLine("Each will cost you 5 coins\n");
+                    WriteLine("Each will cost you 5 coins\n\n");
                     ResetColor();
                     WriteLine("What would you like to buy?\n1) Cast\n2) Fyke\n3) Hand");
 
@@ -420,31 +454,47 @@ namespace FishingGameFinal
 
                     if (choice == "1" & coins >= 5)
                     {
-                        WriteLine("You have bought the Cast Net!");
                         Net net = new Net(hud);
                         net.Name = "Cast";
                         Fish.netinv.Add(net);
+
+                        ForegroundColor = ConsoleColor.Magenta;
+                        WriteLine("You have bought the Cast Net!");
+                        ResetColor();
+                        coins = coins - 5;
                         ReadKey();
+                        Clear();
                     }
                     else if (choice == "2" & coins >= 5)
                     {
-                        WriteLine("You have bought the Fyke Net!");
                         Net net = new Net(hud);
                         net.Name = "Fyke";
                         Fish.netinv.Add(net);
+
+                        ForegroundColor = ConsoleColor.Magenta;
+                        WriteLine("You have bought the Fyke Net!");
+                        ResetColor();
+                        coins = coins - 5;
                         ReadKey();
+                        Clear();
                     }
                     else if (choice == "3" & coins >= 5)
                     {
-                        WriteLine("You have bought the Hand Net!");
                         Net net = new Net(hud);
                         net.Name = "Hand";
                         Fish.netinv.Add(net);
+
+                        ForegroundColor = ConsoleColor.Magenta;
+                        WriteLine("You have bought the Hand Net!");
+                        ResetColor();
+                        coins = coins - 5;
                         ReadKey();
+                        Clear();
                     }
                     else
                     {
-                        WriteLine("You don't have enough coins!");
+                        WriteLine("Oops! You don't have enough coins!");
+                        Clear();
                     }
                 }
                 else if (choice == "2")
@@ -471,6 +521,5 @@ namespace FishingGameFinal
                 }
             }
         }
-
     }
 }
