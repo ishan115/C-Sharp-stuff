@@ -168,10 +168,8 @@ namespace FishingGameFinal
             // Selection of a Net
             if (Fish.netinv.Count == 0) //Game ending condition
             {
-                WriteLine("There are no nets"); 
-
                 ForegroundColor = ConsoleColor.Red;
-                WriteLine("Game Over!!");
+                WriteLine("There are no nets");
                 ResetColor();
 
                 ReadKey();
@@ -312,7 +310,16 @@ namespace FishingGameFinal
                 }
                 catch
                 {
-                    throw new NotImplementedException();
+                    Clear();
+                    WriteLine("Game is going to restart!");
+
+                    ReadKey();
+
+                    ForegroundColor = ConsoleColor.Cyan;
+                    WriteLine("Press any key to restart...");
+                    ResetColor();
+                    ReadKey();
+                    Clear();
                 }
             }
         }
