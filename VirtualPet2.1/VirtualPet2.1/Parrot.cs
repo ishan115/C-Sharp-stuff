@@ -11,6 +11,8 @@ namespace VirtualPet2._1
             PetColor = "Green";
             PetAge = "7";
 
+            pethud = PetHUD.Parrot;
+
             attributes();
         }
 

@@ -3,8 +3,10 @@ using System.Collections.Generic;
 
 namespace VirtualPet2._1
 {
-    abstract class Pet
+    abstract class Pet : INameGet
     {
+        public PetHUD pethud;
+
         public string PetName;
         public string PetColor;
         public string PetAge;
@@ -12,6 +14,11 @@ namespace VirtualPet2._1
         public void attributes()
         {
             WriteLine("My name is " + PetName + ", I am " + PetColor + ". I am " + PetAge + " years old.");
+        }
+
+        public string getName()
+        {
+            return PetName;
         }
 
         public abstract void giveItem();

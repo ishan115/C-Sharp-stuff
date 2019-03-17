@@ -4,7 +4,7 @@ using System.Collections.Generic;
 namespace VirtualPet2._1
 {
 
-    class Tools
+    public class Tools
     {
         public string playerInput;
 
