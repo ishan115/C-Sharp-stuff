@@ -5,6 +5,13 @@ namespace VirtualPet2._1
 {
     class Parrot : Pet, IMission
     {
+        public List<ItemType> items = new List<ItemType>()
+        {
+            ItemType.Bird_Feed,
+            ItemType.Voice_Changer,
+            ItemType.Water_Bowl
+        };
+
         public Parrot()
         {
             PetName = "Parrot";

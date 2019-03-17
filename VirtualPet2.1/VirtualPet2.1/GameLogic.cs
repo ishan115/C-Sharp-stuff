@@ -18,11 +18,11 @@ namespace VirtualPet2._1
         Parrot parrot = new Parrot();
         Player player;
 
-        List<Pet> listOfPet = new List<Pet>();
+        List<INameGet> listOfPet = new List<INameGet>();
 
         List<string> petnames = new List<string>();
 
-        List<Item> listOfItems = new List<Item>();
+        List<INameGet> listOfItems = new List<INameGet>();
 
         List<string> itemnames = new List<string>();
 
@@ -44,11 +44,11 @@ namespace VirtualPet2._1
                 } 
                 else if (i == 2)
                 {
-                    int o = tool.menu(GetPetNames());
+                    int o = tool.menu(GetName(listOfPet));
 
-                    int p = tool.menu(listOfItems());
+                    int p = tool.menu(GetName(listOfItems));
 
-                    switch (listOfPet[o].pethud)
+                    switch (((Pet)listOfPet[o]).pethud)
                     {
                         case PetHUD.Dog:
 
@@ -63,7 +63,7 @@ namespace VirtualPet2._1
 
         }
 
-        public List<string> GetPetNames(List<INameGet> nameGets)
+        public List<string> GetName(List<INameGet> nameGets)
         {
             List<string> function = new List<string>();
             foreach (INameGet pets in nameGets)
@@ -73,8 +73,5 @@ namespace VirtualPet2._1
 
             return function;
         }
-
-
     }
-
 }

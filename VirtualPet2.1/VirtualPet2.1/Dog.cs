@@ -5,6 +5,14 @@ namespace VirtualPet2._1
 {
     class Dog : Pet, IMission
     {
+        public List<ItemType> items = new List<ItemType>()
+        {
+            ItemType.Ball,
+            ItemType.Slide_Whistle,
+            ItemType.Walking_Stick,
+            ItemType.Water_Bowl
+        };
+
         public Dog()
         {
             PetName = "Dog";
