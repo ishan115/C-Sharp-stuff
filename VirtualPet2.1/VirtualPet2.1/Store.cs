@@ -21,8 +21,6 @@ namespace VirtualPet2._1
         {
             GetPrice getPrice = BasePrice;
             getPrice += FluctPrice;
-
-            int basePrice = getPrice(new Item(ItemType.Ball));
         }
 
         public delegate int GetPrice(Item item);
