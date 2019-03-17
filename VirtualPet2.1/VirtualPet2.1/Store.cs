@@ -6,6 +6,17 @@ namespace VirtualPet2._1
 {
     public class Store
     {
+       public List<INameGet> storelist = new List<INameGet>()
+        {
+            new Item(ItemType.Ball),
+            new Item(ItemType.Bird_Feed),
+            new Item(ItemType.Milk_Bowl),
+            new Item(ItemType.Slide_Whistle),
+            new Item(ItemType.Voice_Changer),
+            new Item(ItemType.Walking_Stick),
+            new Item(ItemType.Water_Bowl)
+        };
+        
         public Store()
         {
             GetPrice getPrice = BasePrice;
