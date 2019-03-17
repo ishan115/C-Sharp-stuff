@@ -16,6 +16,15 @@ namespace VirtualPet2._1
         Dog dog = new Dog();
         Cat cat = new Cat();
         Parrot parrot = new Parrot();
+
+        Item item1 = new Item(ItemType.Ball);
+        Item item2 = new Item(ItemType.Bird_Feed);
+        Item item3 = new Item(ItemType.Milk_Bowl);
+        Item item4 = new Item(ItemType.Slide_Whistle);
+        Item item5 = new Item(ItemType.Voice_Changer);
+        Item item6 = new Item(ItemType.Walking_Stick);
+        Item item7 = new Item(ItemType.Water_Bowl);
+
         Player player;
 
         List<INameGet> listOfPet = new List<INameGet>();
@@ -33,6 +42,15 @@ namespace VirtualPet2._1
             listOfPet.Add(dog);
             listOfPet.Add(cat);
             listOfPet.Add(parrot);
+
+            listOfItems.Add(item1);
+            listOfItems.Add(item2);
+            listOfItems.Add(item3);
+            listOfItems.Add(item4);
+            listOfItems.Add(item5);
+            listOfItems.Add(item6);
+            listOfItems.Add(item7);
+
 
             while (true)
             {
@@ -52,7 +70,8 @@ namespace VirtualPet2._1
                     {
                         case PetHUD.Dog:
 
-                            if (Dog.items.Contains(((Item)listOfItems[p]).typeOfItem))
+
+                        if (Dog.items.Contains(((Item)listOfItems[p]).typeOfItem))
                             {
                                 WriteLine("You can use this item");
 

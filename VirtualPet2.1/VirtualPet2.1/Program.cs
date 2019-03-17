@@ -8,12 +8,7 @@ namespace VirtualPet2._1
     {
         static void Main(string[] args)
         {
-            Tools intheshed = new Tools();
-            //intheshed.menu(new List<string>(){"tofu", "candle", "poltergeist", "haloreach" });
-
-            Player player = new Player();
-
-
+            GameLogic gl = new GameLogic();
         }
     }
 }

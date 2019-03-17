@@ -20,8 +20,6 @@ namespace VirtualPet2._1
             PetAge = "5";
 
             pethud = PetHUD.Dog;
-
-            attributes();
         }
 
         public override void giveItem()

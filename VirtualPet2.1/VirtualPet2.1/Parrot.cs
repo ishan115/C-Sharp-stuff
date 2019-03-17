@@ -20,7 +20,6 @@ namespace VirtualPet2._1
 
             pethud = PetHUD.Parrot;
 
-            attributes();
         }
 
         public override void giveItem()
