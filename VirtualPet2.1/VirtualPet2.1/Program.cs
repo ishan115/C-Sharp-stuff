@@ -1,4 +1,6 @@
-﻿using System;
+﻿//Made by Ishan, with help from Jethro for logic
+
+using System;
 using static System.Console;
 using System.Collections.Generic;
 

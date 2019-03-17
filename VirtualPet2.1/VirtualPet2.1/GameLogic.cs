@@ -12,8 +12,6 @@ namespace VirtualPet2._1
 
     class GameLogic
     {
-        public int currency = 5000;
-
         Tools tool = new Tools();
         Dog dog = new Dog();
         Cat cat = new Cat();
@@ -124,27 +122,9 @@ namespace VirtualPet2._1
                     WriteLine("Welcome to the pet shop. Here you can buy as many toys as you want as long as you have money.");
                     int q = tool.menu(GetName(store.storelist)) - 1;
 
-                    switch (((Item)store.storelist[q]).typeOfItem)
-                    {
-                        case ItemType.Ball:
-
-                        case ItemType.Bird_Feed:
-
-                        case ItemType.Milk_Bowl:
-
-                        case ItemType.Slide_Whistle:
-
-                        case ItemType.Voice_Changer:
-
-                        case ItemType.Walking_Stick:
-
-                        case ItemType.Water_Bowl:
-
-
-                    }
+                   listOfItems.Add((Item)store.storelist[q]);
                 }
             }
-
         }
 
         public List<string> GetName(List<INameGet> nameGets)
