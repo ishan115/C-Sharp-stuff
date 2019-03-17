@@ -1,0 +1,254 @@
+using System;
+using System.Collections.Generic;
+
+namespace Vendor
+{
+    //Ishan Dutta
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Vendor V = new Vendor("");  
+        }
+    }
+    
+    public enum StuffEnum
+    {
+        Healing,
+        Speed,
+        Invisibility,
+        Invincibility,
+        Regeneration,
+        Shield,
+        Strength,
+        Poison
+    }
+    
+    class Magic 
+    {
+        string nameofmagicvendor = "";
+        string[] inventoryofmagic = { "" };
+
+        public Magic()
+        {
+            Potions poop = new Potions();
+        }
+        public void restore()
+        {
+
+        }
+
+        public void buy()
+        {
+
+        }
+
+        public void sell()
+        {
+
+        }
+    }
+    
+    class Vendor : IBuy, ISell
+    {
+        string name = "";
+        string[] inventory = { "" };
+        int Gold = 0;
+        bool Bought = false;
+        
+        //temporary solution
+        
+        int IBuy.Gold { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        bool IBuy.Bought { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public int itemCost { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public bool sold { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+
+        //int gold;
+
+      
+
+        public Vendor(string Name)
+        {
+            ask(Name);
+            Console.ReadKey();
+        }
+
+        public void ask(string Name)
+        {
+            while (true)
+            {
+                try
+                {
+                    Console.Clear();
+                    Console.WriteLine("Which vendor would you like to go to? Please type the name.");
+                    Console.WriteLine("1) Blacksmith\n2) Magic\n3) Exit");
+                    Name = Console.ReadLine();
+                    if (Name.ToLower() == "1" || Name.ToLower() == "blacksmith")
+                    {
+                        Blacksmith BS = new Blacksmith();
+
+                    }
+                    else if (Name.ToLower() == "2" || Name.ToLower() == "magic")
+                    {
+                        Magic MV = new Magic();
+                    }
+                    else if (Name.ToLower() == "3" || Name.ToLower() == "exit")
+                    {
+                        Environment.Exit(0);
+                    }
+                }
+                catch 
+                {
+                    Console.WriteLine("Try Again!");
+                }
+            }
+        }
+        public void buy()
+        {
+            Console.WriteLine("Buying....");
+        }
+
+        public void sell()
+        {
+            Console.WriteLine("Selling....");
+        }
+    }
+    interface IBuy
+    {
+        int Gold { get; set; }
+        bool Bought { get; set; }
+
+        void buy();
+    }
+
+    interface ISell
+    {
+        int itemCost { get; set; }
+        bool sold { get; set; }
+
+        void sell();
+    }
+    
+    class Blacksmith
+    {
+        string nameofsmith = "";
+        string[] inventoryofsmith = { "" };
+
+        public Blacksmith()
+        {
+            Weapons weep = new Weapons();
+        }
+        
+        public void repair()
+        {
+
+        }
+
+        public void buy()
+        {
+            Console.WriteLine("This is a sword");
+        }
+
+        public void sell()
+        {
+
+        }
+    }
+    
+    public class Items
+    {
+        public static Random myRandom = new Random();
+        int price = 0;
+        string nameofitem = "";
+        bool used = false;
+
+        public int getRandom(int range)
+        {
+            return myRandom.Next(range);
+        }
+        public void use()
+        {
+
+        }
+    }
+
+    public class Weapons : Items
+    {
+        public delegate void Print(int value);
+        int durability = 100;
+        string typeofweapon = "";
+        List<string> weaponList = File.ReadAllLines("Weapons.txt").ToList();
+
+        public Weapons() //displays weapons list
+        {
+            Console.Clear();
+            Console.WriteLine("Weapons List\n");
+            Console.ForegroundColor = ConsoleColor.Magenta;
+            foreach (string s in weaponList)
+            {
+                Console.WriteLine(s);
+            }
+            Console.ResetColor();
+            
+            Print printDel = PrintMoney;
+
+            Console.WriteLine("\nCost of all these weapons combined: ");
+            printDel(11242);
+
+            Console.ReadKey();
+        }
+        public static void PrintMoney(int num)
+        {
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("{0:C}", num);
+            Console.ResetColor();
+        }
+        private string getWeapon()
+        {
+            return weaponList[getRandom(weaponList.Count)];
+        }
+
+        public void attack()
+        {
+
+        }
+    }
+
+    public class Potions : Items
+    {
+        public delegate void Print(int value);
+        string typeofpotion = "";
+        List<string> potionList = File.ReadAllLines("Potion.txt").ToList();
+
+        public Potions() //displays potions list
+        {
+            Console.Clear();
+            Print printDel = PrintMoney;
+            Console.WriteLine("\nPotions List\n");
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            foreach (StuffEnum value in Enum.GetValues(typeof(StuffEnum)))
+            {
+                Console.WriteLine(value);
+            }
+            Console.ResetColor();
+            Console.WriteLine("\nCost of all these potions combined: ");
+            printDel(2341);
+
+            Console.ReadKey();
+        }
+        private string getWeapon()
+        {
+            return potionList[getRandom(potionList.Count)];
+        }
+        public static void PrintMoney(int num)
+        {
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("{0:C}", num);
+            Console.ResetColor();
+        }
+        public void drink()
+        {
+
+        }
+    }
+}

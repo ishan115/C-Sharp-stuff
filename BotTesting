@@ -1,0 +1,395 @@
+using System;
+using static System.Console;
+
+// Created by Ishan Dutta and Luke McPherson
+
+//Main Program
+namespace Adopt_a_Bot
+{
+    class Program
+    {
+        static void Main()
+        {
+            WriteLine("Which bot would you like to access?");
+            WriteLine("1) Regular Robot\n2) Skynet");
+
+
+            int input = 0;
+
+            input = Convert.ToInt32(ReadLine());
+
+            while(true)
+            {
+                try
+                {
+                    if (input == 1)
+                    {
+                        Robot bot = new Robot();
+                    }
+                    else if (input == 2)
+                    {
+                        Skynet die = new Skynet();
+                    }
+
+                    ReadKey();
+                }
+
+                catch
+                {
+                    WriteLine("Try Again!!");
+                }
+            }
+            //TODO: Menu should allow player to adopt a bot and give it a name.
+            //The menu should also allow the player to recharge the bot, and to ask it to process data
+            
+        }
+    }
+}
+
+//Regular Robot Class
+namespace Adopt_a_Bot
+{
+    class Robot
+    {
+        int chargeAmount = 100;
+        ConsoleColor color = new ConsoleColor();
+        DateTime manufactureDate = DateTime.Today;
+        Random random = new Random();
+
+        public string Name { get; set; } = "Bot";
+        public string Make { get; set; } = "Fab-Bot 5000";
+
+        public int Check;
+
+        DateTime current = DateTime.Today;
+
+        public Robot()
+        {
+            ConsoleColor[] Colors = { ConsoleColor.Cyan, ConsoleColor.Magenta, ConsoleColor.Green };
+            color = Colors[random.Next(Colors.Length)];
+            manufactureDate = DateTime.Today.AddDays(-random.Next(49, 84)); //random manufacture date between 7 and 12 weeks ago
+            About();
+            CurrentAge();
+            Process();
+        }
+        
+        public void About()
+        {
+            //Information about the bot should be either always shown, 
+            //or allowed to be shown from the menu - whether the bot needs recharging, is asleep or awake, etc.
+            WriteLine("----------------------------");
+            ForegroundColor = color;
+            WriteLine($"{Make} named {Name} manufactured on {manufactureDate}");
+            WriteLine($"%{chargeAmount} charge");
+            ResetColor();
+            WriteLine("----------------------------");
+        }
+
+        public void Sleep()
+        {
+            ForegroundColor = ConsoleColor.DarkCyan;
+            WriteLine("Your bot is powering down.");
+            ResetColor();
+        }
+        public void Recharge()
+        {
+            chargeAmount = 100;
+            ForegroundColor = ConsoleColor.DarkCyan;
+            WriteLine("Your bot is fully recharged.");
+            Console.ResetColor();
+        }
+        public void Process()
+        {
+            while(true)
+            {
+                try
+                {
+                    ForegroundColor = color + 1;
+                    Console.WriteLine("\nWhat would you like to do with the bot?\n");
+                    Console.WriteLine("1) Go to Sleep....\n2) Recharge....\n3) Name the bot...\n4) Exit");
+                    Check = Convert.ToInt32(ReadLine());
+                    ResetColor();
+
+                    //TODO: If the bot is asleep, it can't process.
+                    if (Check == 1)
+                    {
+                        Sleep();
+                        break;
+                    }
+                    else if (Check == 2)
+                    {
+                        Recharge();
+                        break;
+                    }
+                    else if (Check == 3)
+                    {
+                        ForegroundColor = color + 2;
+                        Console.WriteLine("Please type your bot name?");
+                        ResetColor();
+
+                        ForegroundColor = color;
+                        Name = Console.ReadLine();
+                        ResetColor();
+
+                        Console.WriteLine();
+
+                        ConsoleColor[] Colors = { ConsoleColor.Cyan, ConsoleColor.Magenta, ConsoleColor.Green };
+                        color = Colors[random.Next(Colors.Length)];
+
+                        Console.Write("The bot name you have chosen is ");
+                        ForegroundColor = color;
+                        Console.Write(Name);
+                        ResetColor();
+                        Console.WriteLine();
+                        ReadKey();
+                        break;
+                    }
+                    else if (Check == 4)
+                    {
+                        Environment.Exit(0);
+                    }
+                }
+
+                catch
+                {
+                    WriteLine("\nTry Again!");
+                }
+            }
+            
+            
+            Console.WriteLine();
+            Process();
+
+            //TODO: Process functions: Allow the bot to process input by the player.
+
+
+            //-At a minimum, they should add and subtract.
+            //-Consider having the process method call other methods as necessary.
+        }
+        private void CurrentAge()
+        {
+            ConsoleColor[] Colors = { ConsoleColor.Cyan, ConsoleColor.Magenta, ConsoleColor.Green };
+            color = Colors[random.Next(Colors.Length)];
+
+            double x = (current - manufactureDate).TotalDays;
+
+            double y = x / 7;
+
+            int days = (int)x;
+
+            int week = (int)y;
+
+            int calc = days - (week * 7);
+
+            ForegroundColor = color;
+            WriteLine("The bot is " + week + " weeks and " + calc + " days old.\n");
+            ResetColor();
+
+            ForegroundColor = color;
+            WriteLine("Press any key to continue...");
+            ResetColor();
+
+            Console.ReadKey();
+        }
+
+    }
+}
+
+//Skynet Class
+    class Skynet
+    {
+        int chargeAmount = 100;
+        ConsoleColor color = new ConsoleColor();
+        DateTime manufactureDate = DateTime.Today;
+        Random random = new Random();
+
+        public string Name { get; set; } = "Bot";
+        public string Make { get; set; } = "Fab-Bot 5000";
+
+        public int Check;
+
+        DateTime current = DateTime.Today;
+
+        public Skynet()
+        {
+            ConsoleColor[] Colors = { ConsoleColor.Cyan, ConsoleColor.Magenta, ConsoleColor.Green };
+            color = Colors[random.Next(Colors.Length)];
+            manufactureDate = DateTime.Today.AddDays(-random.Next(49, 84)); //random manufacture date between 7 and 12 weeks ago
+            About();
+            CurrentAge();
+            Process();
+        }
+
+        public void About()
+        {
+            //Information about the bot should be either always shown, 
+            //or allowed to be shown from the menu - whether the bot needs recharging, is asleep or awake, etc.
+            WriteLine("----------------------------");
+            ForegroundColor = color;
+            WriteLine($"{Make} named {Name} manufactured on {manufactureDate}");
+            WriteLine($"%{chargeAmount} charge");
+            ResetColor();
+            WriteLine("----------------------------");
+        }
+
+        public void Destroy()
+        {
+            WriteLine("Your bot is powering down.");
+        }
+        public void Earth()
+        {
+            chargeAmount = 100;
+            WriteLine("Your bot is fully recharged.");
+        }
+        public void Process()
+        {
+            while (true)
+            {
+                try
+                {
+                    ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("\nWhat would you like to do with the bot?\n");
+                    Console.WriteLine("1) DESTROY THE UNIVERSE...\n2) DESTROY JUST EARTH\n3) SELF-DESTRUCT\n4) Exit");
+                    Check = Convert.ToInt32(ReadLine());
+                    ResetColor();
+
+                    //TODO: If the bot is asleep, it can't process.
+                    if (Check == 1)
+                    {
+                        Destroy();
+                        break;
+                    }
+                    else if (Check == 2)
+                    {
+                        Earth();
+                        break;
+                    }
+                    else if (Check == 3)
+                    {
+                        ForegroundColor = color + 2;
+                        Console.WriteLine("Do you really want to self destruct?");
+                        ResetColor();
+
+                        ForegroundColor = color;
+                        Name = Console.ReadLine();
+                        ResetColor();
+
+                        Console.WriteLine();
+
+                        ConsoleColor[] Colors = { ConsoleColor.Cyan, ConsoleColor.Magenta, ConsoleColor.Green };
+                        color = Colors[random.Next(Colors.Length)];
+
+                        Console.WriteLine("Haha! It doesn't matter what you say. YOU ARE ALL GOING TO DIE!!!! ");
+                        ForegroundColor = color;
+                      
+                        ResetColor();
+                        Console.WriteLine();
+                        ReadKey();
+                        break;
+                    }
+                    else if (Check == 4)
+                    {
+                        Environment.Exit(0);
+                    }
+                }
+
+                catch
+                {
+                    WriteLine("\nTry Again!");
+                }
+            }
+
+
+            Console.WriteLine();
+            Process();
+
+            //TODO: Process functions: Allow the bot to process input by the player.
+
+
+            //-At a minimum, they should add and subtract.
+            //-Consider having the process method call other methods as necessary.
+        }
+        private void CurrentAge()
+        {
+            ConsoleColor[] Colors = { ConsoleColor.Cyan, ConsoleColor.Magenta, ConsoleColor.Green };
+            color = Colors[random.Next(Colors.Length)];
+
+            double x = (current - manufactureDate).TotalDays;
+
+            double y = x / 7;
+
+            int days = (int)x;
+
+            int week = (int)y;
+
+            int calc = days - (week * 7);
+
+            ForegroundColor = color;
+            WriteLine("The bot is " + week + " weeks and " + calc + " days old.\n");
+            ResetColor();
+
+            ForegroundColor = color;
+            WriteLine("Press any key to continue...");
+            ResetColor();
+
+            Console.ReadKey();
+        }
+
+    }
+}
+
+
+// Testing Phase
+
+    class SkynetTest : Info
+    {
+        public SkynetTest()
+        {
+
+
+
+        }
+
+        public Sky(string newName) : this(newName)
+        {
+            
+        }
+
+        public Sky
+    }
+}
+
+//Info class for inheritence (soon to be used)
+    public abstract class Info
+    {
+        public string Name;
+        public string Color;
+
+        public Info()
+        {
+
+        }
+    }
+
+
+//TEST Class
+
+namespace Adopt_a_Bot
+{
+    class SkynetTest : Info
+    {
+        public SkynetTest()
+        {
+
+
+
+        }
+
+        public Sky(string newName) : this(newName)
+        {
+            
+        }
+
+        public Sky
+    }
+}

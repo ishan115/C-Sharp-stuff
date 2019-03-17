@@ -1,0 +1,201 @@
+using System;
+using static System.Console;
+
+namespace Kitty
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Title = "Kitty generator by Ishan Dutta";
+
+            printintro intro = new printintro();
+
+            Mammal pet;
+
+            pet = new Cat("Bernie", true, 12, 30, "Doll");
+           
+            pet = new Cat("Torris", false, 11, 33, "Bone");
+           
+            pet = new Cat("Comstock", true, 4, 10, "Water Gun" );
+
+            pet = new Cat("Miles", false, 5, 23);
+
+            pet = new Cat("Tyler", false, 2, 7, "Puppet", false);
+
+            ReadKey();
+        }
+    }
+
+    class Mammal
+    {
+        public int Age;
+        public bool HasHair;
+        public string Name;
+        public int Weight;
+        public string check;
+
+        public void About()
+        {
+            if (HasHair == true)
+            {
+                check = "very beautiful hair.";
+            }
+            else if (HasHair == false)
+            {
+                check = "no hair.";
+            }
+
+            WriteLine("\n\nMy name is " + Name + ". I am " + Age + " years old. I am about " + Weight + " pounds. I have " + check);
+        }
+
+        public Mammal()
+        {
+
+        }
+    }
+
+    class Cat : Mammal
+    {
+        string MeowSound;
+
+        Toy MyToy = new Toy(); //containment 
+        LitterBox box = new LitterBox(); //containment
+
+        public Cat (string name, bool hasHair, int age, int weight) //without toy and clean
+        {
+            Name = name;
+            HasHair = hasHair;
+            Age = age;
+            Weight = weight;
+
+            About();
+        }
+
+        public Cat (string name, bool hasHair, int age, int weight, string toyname) //with toy and without clean
+        {
+            Name = name;
+            HasHair = hasHair;
+            Age = age;
+            Weight = weight;
+
+            About();
+
+            MyToy.Name = toyname; // containment
+            Write(Name);
+            MyToy.play();
+            GiveToy(MyToy);
+        }
+
+        public Cat(string name, bool hasHair, int age, int weight, string toyname, bool cleanCheck) //with toy and clean
+        {
+            Name = name;
+            HasHair = hasHair;
+            Age = age;
+            Weight = weight;
+
+            About();
+
+            MyToy.Name = toyname;
+            Write(Name);
+            MyToy.play();
+            WriteLine();
+            GiveToy(MyToy);
+
+            box.isClean = cleanCheck;
+
+            ForegroundColor = ConsoleColor.Red;
+            if (cleanCheck == true)
+            {
+                WriteLine("\nBox is clean.");
+            }
+            else if (cleanCheck == false)
+            {
+                WriteLine("\nBox is not clean.");
+            }
+            ResetColor();
+
+
+        }
+
+        public void AboutCat()
+        {
+
+        }
+
+        public void GiveToy(Toy t) //association
+        {
+            t.happy();
+        }
+
+        public void Play(string play_)
+        {
+
+        }
+
+        public void UseLitterBox(LitterBox lb)
+        {
+            lb.cleaning();
+        }
+
+    }
+
+    class LitterBox
+    {
+        public bool isClean;
+        public string Location;
+
+        public LitterBox()
+        {
+
+        }
+
+        public void cleaning()
+        {
+            WriteLine("The litter box is now clean.");
+        }
+
+    }
+
+    public class Toy 
+    {
+        public string Name;
+
+        public void play()
+        {
+            Write(" is playing with " + Name);
+        }
+
+        public void happy()
+        {
+            ForegroundColor = ConsoleColor.Cyan;
+            WriteLine("\nI'm so happy");
+            ResetColor();
+        }
+    }
+
+    class printintro
+    {
+        public void print()
+        {
+            WriteLine(@" ___                ___       ___                                                           ___      
+(   )         .-.  (   )     (   )                                         .-.             (   )     
+ | |   ___   ( __)  | |_      | |_      ___  ___       .-..    ___ .-.    ( __)  ___ .-.    | |_     
+ | |  (   )  (''"") (   __)   (   __)   (   )(   )     /    \  (   )   \   (''"") (   )   \  (   __)   
+ | |  ' /     | |   | |       | |       | |  | |     ' .-,  ;  | ' .-. ;   | |   |  .-. .   | |      
+ | |,' /      | |   | | ___   | | ___   | |  | |     | |  . |  |  / (___)  | |   | |  | |   | | ___  
+ | .  '.      | |   | |(   )  | |(   )  | '  | |     | |  | |  | |         | |   | |  | |   | |(   ) 
+ | | `. \     | |   | | | |   | | | |   '  `-' |     | |  | |  | |         | |   | |  | |   | | | |  
+ | |   \ \    | |   | ' | |   | ' | |    `.__. |     | |  ' |  | |         | |   | |  | |   | ' | |  
+ | |    \ .   | |   ' `-' ;   ' `-' ;    ___ | |     | `-'  '  | |         | |   | |  | |   ' `-' ;  
+(___ ) (___) (___)   `.__.     `.__.    (   )' |     | \__.'  (___)       (___) (___)(___)   `.__.   
+                                         ; `-' '     | |                                             
+                                          .__.'     (___)                                            ");
+        }
+
+        public printintro()
+        {
+            print();
+        }
+    }
+}

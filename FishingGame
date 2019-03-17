@@ -1,0 +1,551 @@
+//Made by Ishan Dutta
+//Assistance from Jethro for logic / syntax help
+
+using System;
+using System.Collections.Generic;
+using static System.Console;
+
+namespace FishingGameFinal
+{
+    class Program
+    {
+        static void Main()
+        {
+            Title = "Something-Smells-Fishy2000, made by Ishan";
+            WriteLine("Welcome to Something-Smells-Fishy2000!!!");
+            WriteLine("\n\nPress any key to continue...");
+            ReadKey();
+            HUD hud = new HUD();
+        }
+    }
+
+    class Net
+    {
+        string name;
+        string action;
+        private string catches;
+
+        HUD hud_;
+
+        Random rng = new Random();
+
+        int check;
+
+        public Net(HUD hud)
+        {
+            hud_ = hud;
+            Clear();
+        }
+
+        public string Name { get => name; set => name = value; }
+      
+        public string Action { get => action; set => action = value; }
+
+        public string Desc;
+
+        public void Cast()
+        {
+            Clear();
+            ForegroundColor = ConsoleColor.Magenta;
+            Desc = "Cast Net: A small round net with weights on the edges.";
+            Action = "Action: You lower your fishing rod into the pond and cast a net of 50,000 sq. ft. to capture literally everything.";
+
+            WriteLine(Name + "\n" + Action);
+            ResetColor();
+
+            ReadKey();
+            Clear();
+
+            ForegroundColor = ConsoleColor.Red;
+            catches = "Possible catche results: bluestripe, snapper, surgeonfish, tuna, herring, anchovy, capelin";
+            WriteLine(catches);
+            ResetColor();
+
+            ReadKey();
+            Clear();
+
+            ReadKey();
+            Clear();
+        }
+
+        public void Durability()
+        {
+            int[] dmgvalue = { 10, 20, 30, 40, 50, 60, 70, 80, 90 }; //damage indicator
+
+            if (check < dmgvalue.Length)
+            {
+                Write("The current net damage is ");
+                ForegroundColor = ConsoleColor.Red;
+                Write(dmgvalue[check] + "%\n");
+                ResetColor();
+            }
+            else
+            {
+                ForegroundColor = ConsoleColor.Red;
+                Write("Net is broken\n");
+                ResetColor();
+                Fish.netinv.Remove(this);
+                hud_.currentNet = null;
+            }
+
+            check++;
+        }
+
+        public void Fyke()
+        {
+            Clear();
+            ForegroundColor = ConsoleColor.Magenta;
+            Desc = "Fyke: A long cylindrical netting bag";
+            Action = "Action: Gently caress your net underwater to get the best results.";
+
+            WriteLine(Name + "\n" + Action);
+            ResetColor();
+
+            ReadKey();
+            Clear();
+
+            ForegroundColor = ConsoleColor.Red;
+            catches = "Possible catch results: eel, plant, trash, nothing";
+            WriteLine(catches);
+            ResetColor();
+
+            ReadKey();
+            Clear();
+
+        }
+
+        public void Hand()
+        {
+            Clear();
+            ForegroundColor = ConsoleColor.Magenta;
+            Desc = "Hand net: A long stiff handle with a hooped net at the end";
+            Action = "Action: Shove your fist down into the water to use this net.";
+
+            WriteLine(Name + "\n" + Action);
+            ResetColor();
+
+            ReadKey();
+            Clear();
+
+            ForegroundColor = ConsoleColor.Red;
+            catches = "Possible catch results: muskellunge, northern pike, eel, nothing";
+            WriteLine(catches);
+            ResetColor();
+
+            ReadKey();
+            Clear();
+        }
+
+
+    }
+
+    class HUD
+    {
+
+        public static bool netExist = false;
+
+        public Net currentNet;
+
+        string input;
+
+        public HUD()
+        {
+            Net fykeNet = new Net(this); //Creates an instance of the Fyke Net
+            Net handNet = new Net(this); //Creates an instance of the Hand Net
+
+            fykeNet.Name = "Fyke";
+            handNet.Name = "Hand";
+
+            Fish.netinv.Add(fykeNet); //Adds fyke net to the list of nets
+            Fish.netinv.Add(handNet); //Adds hand net to the list of nets
+
+            menu();
+        }
+
+        public void ChooseNet()
+        {
+            // List of nets
+            // Selection of a Net
+            if (Fish.netinv.Count == 0) //Game ending condition
+            {
+                ForegroundColor = ConsoleColor.Red;
+                WriteLine("There are no nets");
+                ResetColor();
+
+                ReadKey();
+            }
+            else
+            {
+                WriteLine("Select a net:");
+                int index = 1;
+                foreach (Net net in Fish.netinv) //Prints the availible nets
+                {
+                    WriteLine(index + ") " + net.Name);
+                    index++;
+                }
+
+                int digitInput = 0;
+                while (true) // get the digit input
+                {
+                    string input = ReadLine(); 
+
+                    bool isValid = true;
+
+                    try
+                    {
+                        digitInput = Convert.ToInt32(input); //converts string to int
+                    }
+                    catch
+                    {
+                        isValid = false;
+                    }
+
+                    if (isValid) //checks if the current nets actually exist, if yes then it breaks from the loop, if no, then a new net isn't added
+                    {
+                        if (digitInput > 0 && digitInput <= Fish.netinv.Count)
+                        {
+                            break;
+                        }
+                    }
+                }
+
+                switch (Fish.netinv[digitInput - 1].Name) //switch-case that add nets to the netinv list
+                {
+                    case "Fyke":
+                        Fish.netinv[digitInput - 1].Fyke();
+                        break;
+                    case "Hand":
+                        Fish.netinv[digitInput - 1].Hand();
+                        break;
+                    case "Cast":
+                        Fish.netinv[digitInput - 1].Cast();
+                        break;
+                }
+                currentNet = Fish.netinv[digitInput - 1]; //sets the net selected from the main menu to current net
+            }
+
+            WriteLine("The current selected net is: " + currentNet.Name);
+            WriteLine("\nPress enter to clear..");
+            ReadKey();
+            Clear();
+        }
+
+        public void menu()
+        {
+            string input;
+            while (true)
+            {
+
+                try
+                {
+
+                    WriteLine("Please select from one of the five option?");
+
+                    ForegroundColor = ConsoleColor.DarkGray;
+                    WriteLine("(It is advised to select the net type first before proceeding)\n");
+                    ResetColor();
+
+                    WriteLine("1) Net Type\n2) Fish\n3) Inventory\n4) Store\n5) Exit\n\n\n");
+
+                    ForegroundColor = ConsoleColor.Red;
+                    input = ReadLine();
+                    ResetColor();
+                    Clear();
+
+                    if (input == "1")
+                    {
+                        ChooseNet();
+
+                        ForegroundColor = ConsoleColor.Cyan;
+                        WriteLine($"Your current net selected is: {currentNet.Name}");
+                        ResetColor();
+                    }
+                    else if (input == "2")
+                    {
+                        if (currentNet == null)
+                        {
+                            throw new NotImplementedException();
+                        }
+                        else
+                        {
+                            Fish fish = new Fish(currentNet);
+
+                            ForegroundColor = ConsoleColor.Cyan;
+                            WriteLine($"Your current net selected is: {fish.nameofnet}");
+                            WriteLine($"Your current fish selected is: {fish.FishName}");
+                            ResetColor();
+                        }
+
+                    }
+                    else if (input == "3")
+                    {
+                        ForegroundColor = ConsoleColor.Red;
+                        int count = 1;
+                        WriteLine("Inventory:");
+                        ResetColor();
+                        foreach (string print in Fish.inventory) //prints the list of items in the inventory
+                        {
+                            WriteLine($"{count}. {print}");
+                            count++;
+                        }
+
+                        ForegroundColor = ConsoleColor.Blue;
+                        WriteLine("Press any key to go back to the main menu...");
+                        ResetColor();
+                        ReadKey();
+                        Clear();
+                    }
+                    else if (input == "4")
+                    {
+                        Store st = new Store(this);
+                    }
+                    else if (input == "5")
+                    {
+                        Environment.Exit(0);
+                    }
+                    else
+                    {
+
+                    }
+                }
+                catch
+                {
+                    Clear();
+                    WriteLine("Game is going to restart!");
+
+                    ReadKey();
+
+                    ForegroundColor = ConsoleColor.Cyan;
+                    WriteLine("Press any key to restart...");
+                    ResetColor();
+                    ReadKey();
+                    Clear();
+                }
+            }
+        }
+    }
+
+    class Fish
+    {
+        public static List<string> inventory = new List<string>(); //inventory list
+        public static List<Net> netinv = new List<Net>(); //nets list
+
+        Random rng = new Random();
+
+        public string fishname;
+        public string nameofnet;
+
+        public string FishName { get => fishname; set => fishname = value; }
+
+        private Net currentNet;
+
+        public Fish(Net net_)
+        {
+            nameofnet = net_.Name;
+            currentNet = net_;
+            Clear();
+
+            Options();
+
+        }
+
+        public void Options()
+        {
+            Time();
+            Console.ReadKey();
+            Clear();
+
+            WriteLine("You are currently fishing...");
+
+            if (nameofnet == "Fyke")
+            {
+                string[] items1 = { "eel", "plant", "trash", "nothing" };
+                string items1Choice = items1[rng.Next(items1.Length)];
+                Write($"\nYou raise your Fyke out, and have caught... a ");
+                ForegroundColor = ConsoleColor.Blue;
+                Write(items1Choice);
+                ResetColor();
+                WriteLine();
+                fishname = items1Choice;
+
+                if (fishname != "nothing")
+                {
+                    inventory.Add(fishname); //adds items to the list
+                }
+            }
+
+            else if (nameofnet == "Hand")
+            {
+                string[] items2 = { "muskellunge", "northern pike", "eel", "nothing" };
+                string items2Choice = items2[rng.Next(items2.Length)];
+                Write($"\nYou raise your Hand out, and have caught... a ");
+                ForegroundColor = ConsoleColor.Blue; 
+                Write(items2Choice);
+                ResetColor();
+                WriteLine();
+                fishname = items2Choice; 
+
+                if (fishname != "nothing")
+                {
+                    inventory.Add(fishname);
+                }
+            }
+            else if (nameofnet == "Cast")
+            {
+                string[] items0 = { "bluestripe", "snapper", "surgeonfish", "tuna", "herring", "anchovy", "capelin" };
+                string items0Choice = items0[rng.Next(items0.Length)];
+                Write($"\nYou raise your Cast out, and have caught... a ");
+                ForegroundColor = ConsoleColor.Blue;
+                Write(items0Choice);
+                ResetColor();
+                WriteLine();
+                fishname = items0Choice;
+
+                if (fishname != "nothing")
+                {
+                    inventory.Add(fishname);
+                }
+            }
+
+            currentNet.Durability();
+
+            WriteLine("Press enter to clear..");
+            ReadKey();
+            Clear();
+        }
+        public void Time() //random time selector
+        {
+            Console.ForegroundColor = ConsoleColor.Red;
+            int[] time = { 2, 3, 4, 5, 6, 7 };
+            int timeInt = time[rng.Next(time.Length)];
+            Console.WriteLine($"{timeInt} minutes have passed.");
+            ResetColor();
+        }
+    }
+
+    class Store
+    {
+        public Store(HUD h)
+        {
+            hud = h;
+            option();
+        }
+
+        private HUD hud;
+
+        public int coins;
+
+        public string choice;
+
+        public void option()
+        {
+            while (true)
+            {
+                WriteLine("Welcome to the store! You can buy nets from here in case you break yours.");
+
+                ForegroundColor = ConsoleColor.DarkGray;
+                WriteLine("(Remember that once you exit the store, you will loose all coins, so make sure to spend wisely)\n");
+                ResetColor();
+
+                WriteLine("Do you want to\n1) Buy\n2) Sell\n3) Leave");
+                choice = ReadLine();
+
+                if (choice == "1")
+                {
+                    Clear();
+                    WriteLine("You have chosen to buy things from the store!\n");
+                    Write("You can currently buy the \n");
+                    ForegroundColor = ConsoleColor.Red;
+                    Write("1) Cast Net\n");
+                    Write("2) Fyke Net\n");
+                    Write("3) Hand Net\n");
+                    ResetColor();
+
+                    ForegroundColor = ConsoleColor.Cyan;
+                    WriteLine("\nEach will cost you 5 coins\n\n");
+                    ResetColor();
+                    WriteLine("What would you like to buy?\n1) Cast\n2) Fyke\n3) Hand");
+
+                    choice = ReadLine();
+
+                    if (choice == "1" & coins >= 5) //conditional buying (coins dependent)
+                    {
+                        Net net = new Net(hud);
+                        net.Name = "Cast";
+                        Fish.netinv.Add(net);
+
+                        ForegroundColor = ConsoleColor.Magenta;
+                        WriteLine("You have bought the Cast Net!");
+                        ResetColor();
+                        coins = coins - 5;
+                        ReadKey();
+                        Clear();
+                    }
+                    else if (choice == "2" & coins >= 5)
+                    {
+                        Net net = new Net(hud);
+                        net.Name = "Fyke";
+                        Fish.netinv.Add(net);
+
+                        ForegroundColor = ConsoleColor.Magenta;
+                        WriteLine("You have bought the Fyke Net!");
+                        ResetColor();
+                        coins = coins - 5;
+                        ReadKey();
+                        Clear();
+                    }
+                    else if (choice == "3" & coins >= 5)
+                    {
+                        Net net = new Net(hud);
+                        net.Name = "Hand";
+                        Fish.netinv.Add(net);
+
+                        ForegroundColor = ConsoleColor.Magenta;
+                        WriteLine("You have bought the Hand Net!");
+                        ResetColor();
+                        coins = coins - 5;
+                        ReadKey();
+                        Clear();
+                    }
+                    else
+                    {
+                        Clear();
+                        WriteLine("\aOops! You don't have enough coins!");
+                        ReadKey();
+                        Clear();
+                    }
+                }
+                else if (choice == "2")
+                {
+                    Clear();
+                    WriteLine("You have chosen to sell things from the store!\n");
+                    Write("You currently have ");
+                    Write(Fish.inventory.Count);
+                    Write(" items to sell.\n");
+
+                    ReadKey();
+                    Clear();
+
+                    Write("You have received ");
+
+                    ForegroundColor = ConsoleColor.Yellow;
+                    Write(Fish.inventory.Count);
+                    Write(" coins.\n");
+                    ResetColor();
+
+                    WriteLine("Press anywhere to continue...");
+                    ReadKey();
+                    Clear();
+
+                    coins = Fish.inventory.Count;
+                    Fish.inventory.Clear();
+                }
+                else if (choice == "3")
+                {
+                    Clear();
+                    break;
+                }
+            }
+        }
+    }
+}

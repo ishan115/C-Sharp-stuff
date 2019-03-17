@@ -1,0 +1,209 @@
+//Version 1 (More stuff to be added)
+
+using System;
+using static System.Console;
+using System.IO;
+
+
+namespace Trivia2
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Title = "Trivia Game 2.0"; //Version 1
+            Intro intro = new Intro();
+        }
+    }
+
+    class Intro
+    {
+        public string inputName;
+
+        public Intro()
+        {
+            intro();
+        }
+
+        public void intro()
+        {
+            WriteLine("Welcome to Ishan's Awesome Trivia Game");
+            WriteLine("Get ready to be quizzed on: \n1) The Office\n2) Friends\n3) General Knowledge");
+            WriteLine("Please select the option you would like to pick? ");
+
+            inputName = ReadLine();
+
+            if (inputName == "1")
+            {
+                Office of = new Office();
+            }
+            else if (inputName == "2")
+            {
+                Friends fr = new Friends();
+            }
+            else if (inputName == "3")
+            {
+                General gr = new General();
+            }
+            else
+            {
+                Environment.Exit(0); 
+            }
+        }
+    }
+
+    class Base
+    {
+        Random rand = new Random();
+
+        public string path = "/Users/ishandutta/Desktop/C-Sharp/Trivia2/Trivia2/bin/Debug/TheOfficeQuestions.txt";
+
+        public string path2 = "/Users/ishandutta/Desktop/C-Sharp/Trivia2/Trivia2/bin/Debug/TheOfficeAnswers.txt";
+
+        public string path3 = "/Users/ishandutta/Desktop/C-Sharp/Trivia2/Trivia2/bin/Debug/FriendsQuestions.txt";
+
+        public string path4 = "/Users/ishandutta/Desktop/C-Sharp/Trivia2/Trivia2/bin/Debug/FriendsAnswers.txt";
+
+        public string path5 = "/Users/ishandutta/Desktop/C-Sharp/Trivia2/Trivia2/bin/Debug/GeneralQuestions.txt";
+
+        public string path6 = "/Users/ishandutta/Desktop/C-Sharp/Trivia2/Trivia2/bin/Debug/GeneralAnswers.txt";
+
+
+        public void information() // https://stackoverflow.com/questions/9777206/c-sharp-read-txt-file-and-store-the-data-in-formatted-array
+        {
+            string[] readText = File.ReadAllLines(path);
+            string[] readText2 = File.ReadAllLines(path2);
+
+            for (int i = 0; i < readText.Length; i++)
+            {
+                var questions = readText[i].Split(' ');
+            }
+
+            for (int i = 0; i < readText2.Length; i++)
+            {
+                var answers = readText2[i].Split(' ');
+            }
+
+            // https://social.msdn.microsoft.com/Forums/en-US/dc4bd2ad-166b-416c-875d-5c21984c4796/how-do-i-select-a-random-number-from-an-array?forum=csharplanguage
+
+            for (int i = 0; i < 5; i++)
+            {
+                int numb = rand.Next(0, readText.Length);
+
+                string r2 = readText2[numb];
+
+                string r = readText[numb];
+
+                WriteLine(r);
+
+                WriteLine(r2);
+
+                ReadKey();
+            }
+
+        }
+
+        public void information2() // https://stackoverflow.com/questions/9777206/c-sharp-read-txt-file-and-store-the-data-in-formatted-array
+        {
+            string[] readText = File.ReadAllLines(path3);
+            string[] readText2 = File.ReadAllLines(path4);
+
+            for (int i = 0; i < readText.Length; i++)
+            {
+                var questions = readText[i].Split(' ');
+            }
+
+            for (int i = 0; i < readText2.Length; i++)
+            {
+                var answers = readText2[i].Split(' ');
+            }
+
+            // https://social.msdn.microsoft.com/Forums/en-US/dc4bd2ad-166b-416c-875d-5c21984c4796/how-do-i-select-a-random-number-from-an-array?forum=csharplanguage
+
+
+            for (int i = 0; i < 5; i++)
+            {
+                int numb = rand.Next(0, readText.Length);
+
+                string r2 = readText2[numb];
+
+                string r = readText[numb];
+
+                WriteLine(r);
+
+                WriteLine(r2);
+
+                ReadKey();
+            }
+
+        }
+
+        public void information3() // https://stackoverflow.com/questions/9777206/c-sharp-read-txt-file-and-store-the-data-in-formatted-array
+        {
+            string[] readText = File.ReadAllLines(path5);
+            string[] readText2 = File.ReadAllLines(path6);
+
+            for (int i = 0; i < readText.Length; i++)
+            {
+                var questions = readText[i].Split(' ');
+            }
+
+            for (int i = 0; i < readText2.Length; i++)
+            {
+                var answers = readText2[i].Split(' ');
+            }
+
+            // https://social.msdn.microsoft.com/Forums/en-US/dc4bd2ad-166b-416c-875d-5c21984c4796/how-do-i-select-a-random-number-from-an-array?forum=csharplanguage
+
+
+            for (int i = 0; i < 5; i++)
+            {
+                int numb = rand.Next(0, readText.Length);
+
+                string r2 = readText2[numb];
+
+                string r = readText[numb];
+
+                WriteLine(r);
+
+                WriteLine(r2);
+
+                ReadKey();
+            }
+
+        }
+    }
+
+
+    class Office : Base
+    {
+
+        public Office()
+        {
+            information();
+        }
+    }
+
+    class Friends : Base
+    {
+        public Friends()
+        {
+            information2();
+        }
+    }
+
+    class General : Base
+    {
+        public General()
+        {
+            information3();
+        }
+    }
+
+    class Player
+    {
+        //Don't forget to add player stuff for tomorrow
+        //Make score checker
+        //Add the other stuff
+    }
+}
