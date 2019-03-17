@@ -44,13 +44,24 @@ namespace VirtualPet2._1
                 } 
                 else if (i == 2)
                 {
-                    int o = tool.menu(GetName(listOfPet));
+                    int o = tool.menu(GetName(listOfPet)) - 1;
 
-                    int p = tool.menu(GetName(listOfItems));
+                    int p = tool.menu(GetName(listOfItems)) - 1;
 
                     switch (((Pet)listOfPet[o]).pethud)
                     {
                         case PetHUD.Dog:
+
+                            if (Dog.items.Contains(((Item)listOfItems[p]).typeOfItem))
+                            {
+                                WriteLine("You can use this item");
+
+                            }
+                            else
+                            {
+                                WriteLine("You cannot use this item");
+                            }
+                            break;
 
                         case PetHUD.Cat:
 

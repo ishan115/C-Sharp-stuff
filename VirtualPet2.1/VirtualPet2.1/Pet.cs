@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace VirtualPet2._1
 {
-    abstract class Pet : INameGet
+    public abstract class Pet : INameGet
     {
         public PetHUD pethud;
 

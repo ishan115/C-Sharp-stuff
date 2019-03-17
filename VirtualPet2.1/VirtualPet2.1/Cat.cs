@@ -3,9 +3,9 @@ using System.Collections.Generic;
 
 namespace VirtualPet2._1
 {
-    class Cat : Pet, IMission
+    public class Cat : Pet, IMission
     {
-        public List<ItemType> items = new List<ItemType>()
+        public static List<ItemType> items = new List<ItemType>()
         {
             ItemType.Ball,
             ItemType.Milk_Bowl,

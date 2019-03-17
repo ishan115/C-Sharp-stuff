@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace VirtualPet2._1
 {
-    class Item : INameGet
+    public class Item : INameGet
     {
         public ItemType typeOfItem;
 
