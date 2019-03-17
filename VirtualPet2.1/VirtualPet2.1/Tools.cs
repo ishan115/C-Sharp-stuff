@@ -48,5 +48,10 @@ namespace VirtualPet2._1
                 }
             }
         }
+
+        public string Spacer(string space)
+        {
+            return space.Replace('_', ' ');
+        }
     }
 }
