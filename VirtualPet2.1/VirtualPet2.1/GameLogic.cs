@@ -74,7 +74,7 @@ namespace VirtualPet2._1
                         if (Dog.items.Contains(((Item)listOfItems[p]).typeOfItem))
                             {
                                 WriteLine("You can use this item");
-
+                                listOfItems.Remove((Item)listOfItems[p]);
                             }
                             else
                             {
@@ -83,11 +83,41 @@ namespace VirtualPet2._1
                             break;
 
                         case PetHUD.Cat:
+                            if (Cat.items.Contains(((Item)listOfItems[p]).typeOfItem))
+                            {
+                                WriteLine("You can use this item");
+                                listOfItems.Remove((Item)listOfItems[p]);
+                            }
+                            else
+                            {
+                                WriteLine("You cannot use this item");
+                            }
+                            break;
 
                         case PetHUD.Parrot:
-
-                        break;
+                            if (Parrot.items.Contains(((Item)listOfItems[p]).typeOfItem))
+                            {
+                                WriteLine("You can use this item");
+                                listOfItems.Remove((Item)listOfItems[p]);
+                            }
+                            else
+                            {
+                                WriteLine("You cannot use this item");
+                            }
+                            break;
                     }
+                }
+                else if (i == 3)
+                {
+                    WriteLine("Inventory: ");
+                    foreach (string itemdisplay in GetName(listOfItems))
+                    {
+                        WriteLine(itemdisplay);
+                    }
+                }
+                else if (i == 4)
+                {
+
                 }
             }
 
@@ -98,7 +128,7 @@ namespace VirtualPet2._1
             List<string> function = new List<string>();
             foreach (INameGet pets in nameGets)
             {
-                function.Add(pets.getName());
+                function.Add(tool.Spacer(pets.getName()));
             }
 
             return function;
