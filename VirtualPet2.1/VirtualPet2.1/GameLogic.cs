@@ -122,7 +122,7 @@ namespace VirtualPet2._1
                     WriteLine("Welcome to the pet shop. Here you can buy as many toys as you want as long as you have money.");
                     int q = tool.menu(GetName(store.storelist)) - 1;
 
-                   listOfItems.Add((Item)store.storelist[q]);
+                    listOfItems.Add((Item)store.storelist[q]);
                 }
             }
         }
