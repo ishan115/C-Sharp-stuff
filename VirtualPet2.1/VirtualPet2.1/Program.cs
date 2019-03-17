@@ -11,6 +11,8 @@ namespace VirtualPet2._1
             Tools intheshed = new Tools();
             //intheshed.menu(new List<string>(){"tofu", "candle", "poltergeist", "haloreach" });
 
+            Player player = new Player();
+
 
         }
     }
