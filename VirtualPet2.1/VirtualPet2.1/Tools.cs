@@ -22,7 +22,6 @@ namespace VirtualPet2._1
                 return 0;
             }
 
-
             int a = 1;
 
             foreach (string displaying in options) //prints each list element

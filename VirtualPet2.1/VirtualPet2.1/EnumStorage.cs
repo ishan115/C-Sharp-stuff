@@ -26,9 +26,24 @@ namespace VirtualPet2._1
     }
 
     public enum ItemType
-    {
+    { 
+        Walking_Stick, //$30
+        Voice_Changer, //$200
+        Slide_Whistle, //$150
+        Ball, //$25
         Milk_Bowl, //$50
         Water_Bowl, //$75
-        Bird_Feed //$100
+        Bird_Feed, //$100
+    }
+
+    public enum SkillEnum
+    {
+        Walk,
+        Talk,
+        Slide,
+        RollOver,
+        Meow,
+        Bark,
+        Chirp,
     }
 }
