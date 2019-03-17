@@ -3,16 +3,19 @@ using System.Collections.Generic;
 
 namespace VirtualPet2._1
 {
-    class Pet
+    abstract class Pet
     {
-        public void giveItem()
-        {
+        public string PetName;
+        public string PetColor;
+        public string PetAge;
 
+        public void attributes()
+        {
+            WriteLine("My name is " + PetName + ", I am " + PetColor + ". I am " + PetAge + " years old.");
         }
 
-        public void sendMission()
-        {
+        public abstract void giveItem();
 
-        }
+        public abstract void sendMission();
     }
 }

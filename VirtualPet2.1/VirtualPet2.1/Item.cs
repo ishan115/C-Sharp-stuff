@@ -20,12 +20,8 @@ namespace VirtualPet2._1
             {
                 item.DoShit();
             }
-
         }
-
     }
-
-
 
     public interface Itemm
     {
