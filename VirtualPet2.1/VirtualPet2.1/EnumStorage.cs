@@ -27,13 +27,13 @@ namespace VirtualPet2._1
 
     public enum ItemType
     { 
-        Walking_Stick, //$30
-        Voice_Changer, //$200
-        Slide_Whistle, //$150
-        Ball, //$25
-        Milk_Bowl, //$50
-        Water_Bowl, //$75
-        Bird_Feed, //$100
+        Walking_Stick, //$30 , Used only by Cat and Dog
+        Voice_Changer, //$200 , Used only by Parrot
+        Slide_Whistle, //$150 , Used only by Dog
+        Ball, //$25 , Used only by Cat and Dog
+        Milk_Bowl, //$50 , Used only by Cat
+        Water_Bowl, //$75 , Used only by all
+        Bird_Feed, //$100 , Used only by Parrot
     }
 
     public enum SkillEnum

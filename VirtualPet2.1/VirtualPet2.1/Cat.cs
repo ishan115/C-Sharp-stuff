@@ -3,13 +3,13 @@ using System.Collections.Generic;
 
 namespace VirtualPet2._1
 {
-    class Dog : Pet, IMission
+    class Cat : Pet, IMission
     {
-        public Dog()
+        public Cat()
         {
-            PetName = "Dog";
-            PetColor = "Brown";
-            PetAge = "5";
+            PetName = "Cat";
+            PetColor = "Orange";
+            PetAge = "3";
 
             attributes();
         }
