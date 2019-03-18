@@ -8,12 +8,6 @@ namespace VirtualPet2._1
     {
         public string playerInput;
 
-        public Tools()
-        {
-           
-
-        }
-
         public int menu(List<string> options) //generic menu to display HUD
         {
             //If list isn't called
