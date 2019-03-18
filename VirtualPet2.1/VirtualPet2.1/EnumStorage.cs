@@ -21,12 +21,10 @@ namespace VirtualPet2._1
 
     public enum StoreHUD
     {
-        Buy,
-        Sell,
-        Exit
+        Buy
     }
 
-    public enum ItemType
+    public enum ItemType //Money displayed below is for a future implementation
     { 
         Walking_Stick, //$30 , Used only by Cat and Dog
         Voice_Changer, //$200 , Used only by Parrot
