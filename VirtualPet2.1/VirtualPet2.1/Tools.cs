@@ -48,7 +48,7 @@ namespace VirtualPet2._1
             }
         }
 
-        public string Spacer(string space)
+        public string Spacer(string space) //Replaces '_' with a space when an enum utilizies this method
         {
             return space.Replace('_', ' ');
         }

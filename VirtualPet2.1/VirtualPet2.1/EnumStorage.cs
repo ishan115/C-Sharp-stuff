@@ -8,7 +8,8 @@ namespace VirtualPet2._1
         Player,
         Pet,
         Item,
-        Store
+        Store,
+        Exit
     }
 
     public enum PetHUD
