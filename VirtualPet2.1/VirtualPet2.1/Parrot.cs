@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace VirtualPet2._1
 {
-    public class Parrot : Pet, IMission
+    public class Parrot : Pet
     {
         public static List<ItemType> items = new List<ItemType>()
         {
@@ -22,6 +22,7 @@ namespace VirtualPet2._1
 
         }
 
+        /* Future Plans
         public override void giveItem()
         {
             throw new System.NotImplementedException();
@@ -31,5 +32,6 @@ namespace VirtualPet2._1
         {
             throw new System.NotImplementedException();
         }
+        */
     }
 }

@@ -21,8 +21,10 @@ namespace VirtualPet2._1
             return PetName;
         }
 
+        /* Future Plans
         public abstract void giveItem();
 
         public abstract void sendMission();
+        */       
     }
 }
