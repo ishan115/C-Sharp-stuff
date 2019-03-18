@@ -10,6 +10,7 @@ namespace VirtualPet2._1
     {
         static void Main(string[] args)
         {
+            Title = "Ishan's Awesome Virtual Pet 2.0";
             GameLogic gl = new GameLogic();
         }
     }
