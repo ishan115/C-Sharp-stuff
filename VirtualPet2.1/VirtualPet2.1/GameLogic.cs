@@ -92,7 +92,18 @@ namespace VirtualPet2._1
                 } 
                 else if (i == 2)
                 {
+                    Clear();
+                    ForegroundColor = ConsoleColor.Cyan;
+                    WriteLine("Welcome to the pet selector menu! Select a pet from below:");
+                    ResetColor();
+
                     int o = tool.menu(GetName(listOfPet)) - 1; //returns int selected by player when selecting pet
+
+                    Clear();
+
+                    ForegroundColor = ConsoleColor.Cyan;
+                    WriteLine("Your pet can play with toys, but only certain ones. Choose wisely.");
+                    ResetColor();
 
                     int p = tool.menu(GetName(listOfItems)) - 1; //returns int selected by player when selecting items
 
@@ -102,70 +113,97 @@ namespace VirtualPet2._1
 
                         if (Dog.items.Contains(((Item)listOfItems[p]).typeOfItem)) //checks if the selected item matches with a toy that a dog can use
                             {
-                                WriteLine("You can use this item");
+                                ForegroundColor = ConsoleColor.Red;
+                                WriteLine("You can use this item\nItem has been removed from your inventory");
+                                ResetColor();
+
                                 listOfItems.Remove((Item)listOfItems[p]);
                                 ReadKey();
-                                Clear();
                             }
                             else
                             {
+                                ForegroundColor = ConsoleColor.Red;
                                 WriteLine("You cannot use this item");
+                                ResetColor();
+
                                 ReadKey();
-                                Clear();
                             }
                             break;
 
                         case PetHUD.Cat:
                             if (Cat.items.Contains(((Item)listOfItems[p]).typeOfItem)) //checks if the selected item matches with a toy that a cat can use
                             {
-                                WriteLine("You can use this item");
+                                ForegroundColor = ConsoleColor.Red;
+                                WriteLine("You can use this item\nItem has been removed from your inventory");
+                                ResetColor();
+
                                 listOfItems.Remove((Item)listOfItems[p]);
+
                                 ReadKey();
-                                Clear();
                             }
                             else
                             {
+                                ForegroundColor = ConsoleColor.Red;
                                 WriteLine("You cannot use this item");
+                                ResetColor();
+
                                 ReadKey();
-                                Clear();
                             }
                             break;
 
                         case PetHUD.Parrot:
                             if (Parrot.items.Contains(((Item)listOfItems[p]).typeOfItem)) //checks if the selected item matches with a toy that a parrot can use
                             {
-                                WriteLine("You can use this item");
+                                ForegroundColor = ConsoleColor.Red;
+                                WriteLine("You can use this item\nItem has been removed from your inventory");
+                                ResetColor();
+
                                 listOfItems.Remove((Item)listOfItems[p]);
+
                                 ReadKey();
-                                Clear();
                             }
                             else
                             {
+                                ForegroundColor = ConsoleColor.Red;
                                 WriteLine("You cannot use this item");
+                                ResetColor();
+
                                 ReadKey();
-                                Clear();
                             }
+
                             break;
                     }
                 }
                 else if (i == 3)
                 {
+                    Clear();
+                    ForegroundColor = ConsoleColor.DarkBlue;
                     WriteLine("Inventory: "); //displays current inventory of toys
+                    ResetColor();
+
                     foreach (string itemdisplay in GetName(listOfItems))
                     {
                         WriteLine(itemdisplay);
-                        ReadKey();
-                        Clear();
                     }
+
+                    ReadKey();
                 }
                 else if (i == 4)
                 {
+                    Clear();
+                    ForegroundColor = ConsoleColor.Cyan;
                     WriteLine("Welcome to the pet shop. Here you can buy as many toys as you want as long as you have money.");
+                    ResetColor();
+
                     int q = tool.menu(GetName(store.storelist)) - 1; //returns int selected by player when choosing options within the store
 
+                    ForegroundColor = ConsoleColor.Red;
+                    WriteLine("Great choice!!! Item has been added to your inventory");
+                    ResetColor();
+
                     listOfItems.Add((Item)store.storelist[q]);
+
                     ReadKey();
-                    Clear();
                 }
                 else if (i == 5)
                 {
@@ -181,7 +219,6 @@ namespace VirtualPet2._1
             {
                 function.Add(tool.Spacer(pets.getName()));
             }
-
             return function;
         }
     }
