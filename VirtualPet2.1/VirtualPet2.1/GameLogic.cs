@@ -5,12 +5,7 @@ using System.Linq;
 using System.IO;
 
 namespace VirtualPet2._1
-{
-    public interface INameGet //Inter
-    {
-        string getName();
-    }
-
+{ 
     class GameLogic
     {
         string path = "intro.txt";
@@ -210,6 +205,11 @@ namespace VirtualPet2._1
                     Environment.Exit(0);
                 }
             }
+        }
+
+        public interface INameGet //Interface
+        {
+            string getName();
         }
 
         public List<string> GetName(List<INameGet> nameGets) //creates a list and replaces the '_' with space
