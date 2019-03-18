@@ -207,11 +207,6 @@ namespace VirtualPet2._1
             }
         }
 
-        public interface INameGet //Interface
-        {
-            string getName();
-        }
-
         public List<string> GetName(List<INameGet> nameGets) //creates a list and replaces the '_' with space
         {
             List<string> function = new List<string>();
@@ -221,5 +216,10 @@ namespace VirtualPet2._1
             }
             return function;
         }
+    }
+
+    public interface INameGet //Interface
+    {
+        string getName();
     }
 }
