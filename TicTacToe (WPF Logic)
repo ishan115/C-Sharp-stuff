@@ -15,6 +15,13 @@ using System.Windows.Shapes;
 
 namespace TicTacToe
 {
+    public enum ButtonState
+        {
+            empty, //0
+            O, //1
+            X //2
+        }
+
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
