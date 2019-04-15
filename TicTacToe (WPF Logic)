@@ -1,0 +1,143 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
+using System.Windows.Shapes;
+
+namespace TicTacToe
+{
+    /// <summary>
+    /// Interaction logic for MainWindow.xaml
+    /// </summary>
+    public partial class MainWindow : Window
+    {
+        private bool playerOneTurn;
+        private bool gameOver;
+
+        private ButtonState[] results;
+        public MainWindow()
+        {
+            InitializeComponent();
+            NewGame();
+        }
+
+        private void NewGame()
+        {
+            results = new ButtonState[9];
+
+            for (int i = 0; i < results.Length; i++)
+            {
+                results[i] = ButtonState.empty;
+            }
+
+            playerOneTurn = true;
+
+            GameBoard.Children.Cast<Button>().ToList().ForEach(button =>
+            {
+                button.Content = string.Empty;
+                button.Background = Brushes.White;
+                button.Foreground = Brushes.Black;
+            });
+
+            gameOver = false;
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            if (gameOver)
+            {
+                NewGame();
+                return;
+            }
+
+            var button = (Button)sender;
+            var colum = Grid.GetColumn(button);
+            var row = Grid.GetRow(button);
+            var index = colum + (row * 3);
+
+            if (results[index] != ButtonState.empty)
+                return;
+
+            results[index] = playerOneTurn ? ButtonState.X : ButtonState.O;
+
+            button.Content = playerOneTurn ? "X" : "O";
+
+            playerOneTurn ^= true;
+
+            WinnerCheck();
+
+            
+        }
+
+        private void WinnerCheck()
+        {
+            //horizontal
+
+            if(results[0] != ButtonState.empty && (results[0] & results[1] & results[2]) == results[0])
+            {
+                gameOver = true;
+                Button0.Background = Button1.Background = Button2.Background = Brushes.Aquamarine;
+            }
+            else if (results[3] != ButtonState.empty && (results[3] & results[4] & results[5]) == results[3])
+            {
+                gameOver = true;
+                Button3.Background = Button4.Background = Button5.Background = Brushes.Aquamarine;
+            }
+            else if (results[6] != ButtonState.empty && (results[6] & results[7] & results[8]) == results[6])
+            {
+                gameOver = true;
+                Button6.Background = Button7.Background = Button8.Background = Brushes.Aquamarine;
+            }
+
+            //vertical
+
+            if (results[0] != ButtonState.empty && (results[0] & results[3] & results[6]) == results[0])
+            {
+                gameOver = true;
+                Button0.Background = Button3.Background = Button6.Background = Brushes.Aquamarine;
+            }
+            else if (results[1] != ButtonState.empty && (results[1] & results[4] & results[7]) == results[1])
+            {
+                gameOver = true;
+                Button1.Background = Button4.Background = Button7.Background = Brushes.Aquamarine;
+            }
+            else if (results[2] != ButtonState.empty && (results[2] & results[5] & results[8]) == results[2])
+            {
+                gameOver = true;
+                Button2.Background = Button5.Background = Button8.Background = Brushes.Aquamarine;
+            }
+
+            //vertical
+
+            if (results[0] != ButtonState.empty && (results[0] & results[4] & results[8]) == results[0])
+            {
+                gameOver = true;
+                Button0.Background = Button4.Background = Button8.Background = Brushes.Aquamarine;
+            }
+            else if (results[2] != ButtonState.empty && (results[2] & results[4] & results[6]) == results[2])
+            {
+                gameOver = true;
+                Button2.Background = Button4.Background = Button6.Background = Brushes.Aquamarine;
+            }
+
+            else if (!results.Any(f => f == ButtonState.empty))
+            {
+                gameOver = true;
+
+                GameBoard.Children.Cast<Button>().ToList().ForEach(button =>
+                {
+                    button.Background = Brushes.Orange;
+                });
+            }
+        }
+    }
+}
